@@ -46,7 +46,6 @@ public class CustomerController {
 
         User user = new User();
         BeanUtils.copyProperties(userService.getUser(GetTokenInfo.getCustomUserId(request)), user);
-        user.setAvatarFile(new File(user.getAvatar()));
 
         //返回当前用户信息和院系选择
         hashMap.put("user", user);

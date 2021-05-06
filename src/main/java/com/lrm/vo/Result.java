@@ -1,22 +1,28 @@
 package com.lrm.vo;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lrm.Exception.NoPermissionException;
 import com.lrm.Exception.NotFoundException;
 
 import java.io.IOException;
 
 //包装类
+
+//405定义为操作失误（不是跳转到异常页面，而是直接在当前页给出提示）
 //404定义为没找到对应资源
 //403定义为无权限访问
 //402定义为文件过大
 //401定义为JWT鉴权失败
 //400定义其他未知错误
 
-public class Result <T> {
+//200为操作成功
+
+public class Result<T> {
 
     T data;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     Boolean isSuccess;
 
     Integer code;
@@ -28,8 +34,11 @@ public class Result <T> {
     //正常类型的包装返回的结果
     public Result(T data, Boolean isSuccess, String msg) {
         this.setData(data);
-        this.setSuccess(isSuccess);
-        this.setCode(200);
+        if (isSuccess) {
+            this.setCode(200);
+        } else {
+            this.setCode(406);
+        }
         this.setMsg(msg);
     }
 

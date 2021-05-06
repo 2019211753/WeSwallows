@@ -3,15 +3,18 @@ package com.lrm.po;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 //注解大多写在了User类
 
+/**
+ * @author 山水夜止
+ */
 @Entity
 @Table(name = "t_tag")
 public class Tag {
@@ -73,6 +76,7 @@ public class Tag {
     public List<Question> getQuestions() {
         return questions;
     }
+
     @JsonBackReference
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
@@ -82,15 +86,23 @@ public class Tag {
     public List<Tag> getSonTags() {
         return sonTags;
     }
+
     @JsonManagedReference
     public void setSonTags(List<Tag> sonTags) {
         this.sonTags = sonTags;
     }
 
+    /**
+     * @param
+     * @return
+     * @throws
+     * @author
+     */
     @JsonBackReference
     public Tag getParentTag() {
         return parentTag;
     }
+
     @JsonBackReference
     public void setParentTag(Tag parentTag) {
         this.parentTag = parentTag;

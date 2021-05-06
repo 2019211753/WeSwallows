@@ -65,8 +65,6 @@ public class User {
      * 用户头像 非必填 可以在前端显示默认值
      */
     private String avatar;
-    @Transient
-    private File avatarFile;
     /**
      * 用户邮箱 非必填 可以在前端显示默认值
      */
@@ -195,14 +193,6 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
-    }
-
-    public File getAvatarFile() {
-        return avatarFile;
-    }
-
-    public void setAvatarFile(File avatarFile) {
-        this.avatarFile = avatarFile;
     }
 
     public String getEmail() {
