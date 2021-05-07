@@ -19,7 +19,6 @@ public class DisLikes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     /**
      * 踩的是评论
      */
@@ -48,6 +47,7 @@ public class DisLikes {
     @ManyToOne
     private User postUser;
 
+
     public Long getId() {
         return id;
     }
@@ -72,12 +72,6 @@ public class DisLikes {
         this.dislikeQuestion = dislikeQuestion;
     }
 
-    /**
-     * 只需要likes的json对象中含有question或comment 而后二者的json对象中只需要有数量 不需要有dislikes
-     * 所以用这种方向的Json控制
-     *
-     * @return 关联评论
-     */
     @JsonManagedReference
     public Comment getComment() {
         return comment;

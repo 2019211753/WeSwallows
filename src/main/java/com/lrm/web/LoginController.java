@@ -77,6 +77,7 @@ public class LoginController {
 
     /**
      * 登录
+     *
      * @param username 用户名
      * @param password 密码
      * @return 登录成功的token; 登陆失败的报错信息

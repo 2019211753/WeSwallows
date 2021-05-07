@@ -24,6 +24,7 @@ public class GetTokenInfo {
 
     /**
      * 验证是否是管理页
+     *
      * @param request 获得当前token
      * @return true是 false不是
      * @throws JWTVerificationException JWT鉴权错误

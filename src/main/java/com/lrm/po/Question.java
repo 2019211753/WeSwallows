@@ -38,7 +38,6 @@ public class Question {
     @NotBlank(message = "请输入概述")
     private String description;
 
-
     /**
      * 问题标题 前端必填
      **/
@@ -65,7 +64,6 @@ public class Question {
      */
     private Integer disLikesNum;
 
-
     /**
      * 是否被隐藏
      */
@@ -77,37 +75,6 @@ public class Question {
      * user.donation=user.comment2.count*3++user.comment2.likes*3+user.question.count*2+user.question.likes*2
      */
     private Integer impact;
-
-    /**
-     * 节约空间不入库
-     * 前端传回多个标签 用,分割的字符组合
-     **/
-    @Transient
-    private String tagIds;
-    /**
-     * 节约空间不入库
-     * 返回前端的评论发布者的头像
-     **/
-    @Transient
-    private String avatar;
-    /**
-     * 节约空间不入库
-     * 返回前端的评论发布者的昵称
-     **/
-    @Transient
-    private String nickname;
-    /**
-     * 节约空间不入库
-     * 返回前端的判断该评论是否被当前用户点过赞
-     **/
-    @Transient
-    private Boolean approved;
-    /**
-     * 节约空间不入库
-     * 返回前端的判断该评论是否被当前用户点过踩
-     **/
-    @Transient
-    private Boolean disapproved;
 
     /**
      * 时间会封装成完整的"yyyy-MM-dd HH:mm:ss"的Date类型
@@ -123,6 +90,43 @@ public class Question {
     @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     @Temporal(TemporalType.TIMESTAMP)
     private Date newCommentedTime;
+
+
+    /**
+     * 节约空间不入库
+     * 前端传回多个标签 用,分割的字符组合
+     **/
+    @Transient
+    private String tagIds;
+
+    /**
+     * 节约空间不入库
+     * 返回前端的评论发布者的头像
+     **/
+    @Transient
+    private String avatar;
+
+    /**
+     * 节约空间不入库
+     * 返回前端的评论发布者的昵称
+     **/
+    @Transient
+    private String nickname;
+
+    /**
+     * 节约空间不入库
+     * 返回前端的判断该评论是否被当前用户点过赞
+     **/
+    @Transient
+    private Boolean approved;
+
+    /**
+     * 节约空间不入库
+     * 返回前端的判断该评论是否被当前用户点过踩
+     **/
+    @Transient
+    private Boolean disapproved;
+
 
     /**
      * 一question对应多tag
@@ -144,12 +148,18 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Likes> likes;
 
+    /**
+     * 多dislikes对应一question
+     */
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<DisLikes> dislikes;
 
-    //允许级联删除 删除问题即删除所有评论
+    /**
+     * 多comments对应一question
+     */
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Comment> comments = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -333,8 +343,10 @@ public class Question {
     }
 
 
-    //真正起setTagIds作用的是这个方法
-    //Tag集合转为String对象
+    /**
+     * 真正起setTagIds作用的是这个方法
+     * Tag集合转为String对象
+     */
     public void init() {
         this.tagIds = tagsToIds(this.getTags());
     }
@@ -380,29 +392,4 @@ public class Question {
         return Objects.hash(getId(), getContent(), getDescription(), getTitle(), getView(), getLikesNum(), getCommentsNum(), getDisLikesNum(), isHidden, getImpact(), getTagIds(), getAvatar(), getNickname(), isApproved(), isDisapproved(), getCreateTime(), getNewCommentedTime(), getTags(), getUser(), getLikes(), getDislikes(), getComments());
     }
 
-    //    @Override
-//    public String toString() {
-//        return "Question{" +
-//                "id=" + id +
-//                ", content='" + content + '\'' +
-//                ", description='" + description + '\'' +
-//                ", title='" + title + '\'' +
-//                ", view=" + view +
-//                ", likesNum=" + likesNum +
-//                ", commentsNum=" + commentsNum +
-//                ", disLikesNum=" + disLikesNum +
-//                ", isHidden=" + isHidden +
-//                ", impact=" + impact +
-//                ", tagIds='" + tagIds + '\'' +
-//                ", avatar='" + avatar + '\'' +
-//                ", nickname='" + nickname + '\'' +
-//                ", approved=" + approved +
-//                ", createTime=" + createTime +
-//                ", newCommentedTime=" + newCommentedTime +
-//                ", tags=" + tags +
-//                ", user=" + user +
-//                ", likes=" + likes +
-//                ", comments=" + comments +
-//                '}';
-//    }
 }

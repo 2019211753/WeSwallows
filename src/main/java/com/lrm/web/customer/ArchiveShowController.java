@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author 山水夜止.
+ * @author 山水夜止
  */
 @RestController
 @RequestMapping("/customer")

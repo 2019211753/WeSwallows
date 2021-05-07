@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class FileUtils {
+
+    /**
+     * @param file 被删除的文件
+     */
     public static void deleteFile(File file) {
         //判断文件是否存在
         if (file.exists()) {

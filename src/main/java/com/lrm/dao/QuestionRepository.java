@@ -27,6 +27,7 @@ public interface QuestionRepository extends JpaRepository<Question,Long>, JpaSpe
 
     /**
      * 将所有问题按时间的年分割
+     *
      * @param userId 当前用户Id
      * @return  顺序返回年份List集合
      */
@@ -51,6 +52,7 @@ public interface QuestionRepository extends JpaRepository<Question,Long>, JpaSpe
 
     /**
      * 按月份查询问题
+     *
      * @param year 年份
      * @param month 月份
      * @param userId 当前用户Id

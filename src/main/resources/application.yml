@@ -12,6 +12,7 @@ spring:
       ddl-auto: update
     show-sql: true
   resources:
+    #上传文件临时存放位置
     static-locations: classpath:/static/, file:${web.upload_path}
   #配置文件上传
   servlet:
@@ -19,11 +20,9 @@ spring:
       #文件上传是否开启
       enabled: true
       #单个数据的大小
-      max-file-size: 1Mb
+      max-file-size: 1MB
       #总数据的大小
-      max-request-size: 10Mb
-      #上传文件临时存放位置
-      location:
+      max-request-size: 10MB
 
 #文件上传路径
 web.upload_path: D:\springboot开发\雏雁项目\WeSwallows\src\main\resources\static\images

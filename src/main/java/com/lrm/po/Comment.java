@@ -2,6 +2,7 @@ package com.lrm.po;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -35,7 +36,6 @@ public class Comment {
 
     /**
      * 是否是第二类回答 即正式回答
-     * 因为Boolean前端传入后端有问题 所以换成Long 改动处：repository俺按answer查找 saveComment
      */
     private Boolean answer;
 
@@ -70,43 +70,7 @@ public class Comment {
     private Long parentCommentId0;
 
     /**
-     * 节约空间不入库
-     * 返回前端的评论发布者的头像
-     */
-    @Transient
-    private String avatar;
-    /**
-     * 节约空间不入库
-     * 返回前端的评论发布者的昵称
-     */
-    @Transient
-    private String nickname;
-    /**
-     * 节约空间不入库
-     * 返回前端的判断该评论是否被当前用户点过赞
-     */
-    @Transient
-    private Boolean approved;
-    /**
-     * 节约空间不入库
-     * 返回前端的判断该评论是否被当前用户点过踩
-     */
-    @Transient
-    private Boolean disapproved;
-    /**
-     * 节约空间不入库
-     * 前端传回comment 保存父级评论者昵称的媒介
-     */
-    @Transient
-    private String parentCommentName;
-    /**
-     * 节约空间不入库
-     * 作为传回前端评论区的Comments集合
-     */
-    @Transient
-    private List<Comment> receiveComments = new ArrayList<>();
-
-    /**
+     * 注解@Lob 长文本
      * 前端必填内容
      * 评论内容
      */
@@ -124,14 +88,58 @@ public class Comment {
 
 
     /**
+     * 节约空间不入库
+     * 返回前端的评论发布者的头像
+     */
+    @Transient
+    private String avatar;
+
+    /**
+     * 节约空间不入库
+     * 返回前端的评论发布者的昵称
+     */
+    @Transient
+    private String nickname;
+
+    /**
+     * 节约空间不入库
+     * 返回前端的判断该评论是否被当前用户点过赞
+     */
+    @Transient
+    private Boolean approved;
+
+    /**
+     * 节约空间不入库
+     * 返回前端的判断该评论是否被当前用户点过踩
+     */
+    @Transient
+    private Boolean disapproved;
+
+    /**
+     * 节约空间不入库
+     * 前端传回comment 保存父级评论者昵称的媒介
+     */
+    @Transient
+    private String parentCommentName;
+
+    /**
+     * 节约空间不入库
+     * 作为传回前端评论区的Comments集合
+     */
+    @Transient
+    private List<Comment> receiveComments = new ArrayList<>();
+
+
+    /**
      * 多comment对一question
      */
     @ManyToOne
     private Question question;
 
     /**
-     * 这里可以给个JsonIgnore 然后再放一个只装第二级评论的集合
+     * 这里不返回给前端 会很乱 用receiveComments代替
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "parentComment", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Comment> replyComments = new ArrayList<>();
 
@@ -165,6 +173,7 @@ public class Comment {
     @ManyToOne
     private User postUser;
 
+    
     public Long getId() {
         return id;
     }
@@ -309,6 +318,11 @@ public class Comment {
         this.receiveComments = receiveComments;
     }
 
+    /**
+     * 令Comment对象的json中不含question
+     *
+     * @return 关联的question对象 返回的Json里不含它
+     */
     @JsonBackReference
     public Question getQuestion() {
         return question;
@@ -318,6 +332,11 @@ public class Comment {
         this.question = question;
     }
 
+    /**
+     * 令Comment对象的json中不含replyComments
+     *
+     * @return 关联的replyComments对象 返回的Json里不含它
+     */
     @JsonBackReference
     public List<Comment> getReplyComments() {
         return replyComments;
@@ -327,6 +346,11 @@ public class Comment {
         this.replyComments = replyComments;
     }
 
+    /**
+     * 令Comment对象的json中不含parentComment
+     *
+     * @return 关联的parentComment对象 返回的Json里不含它
+     */
     @JsonBackReference
     public Comment getParentComment() {
         return parentComment;
@@ -336,6 +360,11 @@ public class Comment {
         this.parentComment = parentComment;
     }
 
+    /**
+     * 令Comment对象的json中不含receiveUser
+     *
+     * @return 关联的receiveUser对象 返回的Json里不含它
+     */
     @JsonBackReference
     public User getReceiveUser() {
         return receiveUser;
@@ -345,6 +374,11 @@ public class Comment {
         this.receiveUser = receiveUser;
     }
 
+    /**
+     * 令Comment对象的json中不含postUser
+     *
+     * @return 关联的postUser对象 返回的Json里不含它
+     */
     @JsonBackReference
     public User getPostUser() {
         return postUser;
@@ -354,6 +388,11 @@ public class Comment {
         this.postUser = postUser;
     }
 
+    /**
+     * 令Comment对象的json中不含Likes
+     *
+     * @return 关联的Likes对象 返回的Json里不含它
+     */
     @JsonBackReference
     public List<Likes> getLikes() {
         return likes;
@@ -367,7 +406,7 @@ public class Comment {
      * 只需要likes的json对象中含有question或comment 而后二者的json对象中只需要有数量 不需要有dislikes
      * 所以用这种方向的Json控制
      *
-     * @return 关联dislikes 实际上json不会返回
+     * @return 关联的dislikes对象 返回的Json里不含它了
      */
     @JsonBackReference
     public List<DisLikes> getDislikes() {

@@ -27,6 +27,7 @@ public class Likes {
      * 赞的是问题
      */
     private Boolean likeQuestion;
+
     /**
      * 是否已读
      * 不能用isRead 也不能用read关键字 只能这样了。。。
@@ -45,18 +46,21 @@ public class Likes {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
+
     /**
      * 节约空间不入库
      * 返回前端的评论发布者的头像
      */
     @Transient
     private String avatar;
+
     /**
      * 节约空间不入库
      * 返回前端的评论发布者的昵称
      */
     @Transient
     private String nickname;
+
 
     /**
      * 多likes对一comment
@@ -81,6 +85,7 @@ public class Likes {
      */
     @ManyToOne
     private User receiveUser;
+
 
     public Long getId() {
         return id;

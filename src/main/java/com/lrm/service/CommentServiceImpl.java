@@ -160,6 +160,9 @@ public class CommentServiceImpl implements CommentService {
 
     /**
      * 遍历所有第一级评论
+     *
+     * @param comments 第一级评论集合
+     * @return 返回评论区的新的评论集合
      */
     private List<Comment> eachComment(List<Comment> comments) {
         //将所有第一级评论保存到commentsView里
@@ -213,7 +216,10 @@ public class CommentServiceImpl implements CommentService {
     }
 
     /**
-     * 得到所有评论 计算赞数
+     * 得到某问题下的所有评论 计算赞数
+     *
+     * @param questionId 问题Id
+     * @return 未读评论集合
      */
     @Override
     public List<Comment> listAllCommentByQuestionId(Long questionId) {
@@ -222,6 +228,9 @@ public class CommentServiceImpl implements CommentService {
 
     /**
      * 获得未读评论通知
+     *
+     * @param userId 当前用户Id
+     * @return 未读评论集合
      */
     @Override
     public List<Comment> listAllNotReadComment(Long userId) {

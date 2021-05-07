@@ -109,6 +109,7 @@ public class IndexController {
 
     /**
      * 问题内容展示
+     *
      * @param questionId 问题Id
      * @return 问题的内容
      */
@@ -173,6 +174,7 @@ public class IndexController {
 
     /**
      * 点踩
+     *
      * @param request 获取执行点踩动作的用户id
      * @param questionId 问题Id
      */

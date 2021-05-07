@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +36,7 @@ public class CustomerController {
      * 返回个人信息
      * 获取当前用户id
      *
+     * @param request 获取token
      * @return user: 当前用户对象
      */
     @GetMapping("/personal")
@@ -95,6 +94,7 @@ public class CustomerController {
 
     /**
      * 修改所有信息 封装成User返回
+     *
      * @param user 旧用户对象
      * @return user：新用户对象
      */

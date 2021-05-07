@@ -26,10 +26,16 @@ public class Tag {
     private Long id;
 
     /**
+     * 避免json序列无限递归 只好出此下策 真拙劣啊...
+     */
+    Long parentTagId0;
+
+    /**
      * 标签名称 前端必填
      */
     @NotBlank(message = "请输入标签名称")
     private String name;
+
 
     /**
      * 标签的子标签
@@ -45,16 +51,12 @@ public class Tag {
     private Tag parentTag;
 
     /**
-     * 避免json序列无限递归 只好出此下策 真拙劣啊...
-     */
-    Long parentTagId0;
-
-    /**
      * 不用级联删除 这块需要返回错误页面 告知管理员标签下有博客的情况下不能删除标签
      */
     @JsonBackReference
     @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
     private List<Question> questions = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -92,12 +94,6 @@ public class Tag {
         this.sonTags = sonTags;
     }
 
-    /**
-     * @param
-     * @return
-     * @throws
-     * @author
-     */
     @JsonBackReference
     public Tag getParentTag() {
         return parentTag;

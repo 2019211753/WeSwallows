@@ -34,6 +34,7 @@ public class MessageController {
 
     /**
      * 返回所有通知
+     *
      * @param request 获取当前用户id
      * @return 未读评论和点赞
      * @throws JWTVerificationException JWT鉴权错误
@@ -80,6 +81,7 @@ public class MessageController {
 
     /**
      * 已读单个点赞
+     *
      * @param likesId 点赞id
      */
     @GetMapping("/{likesId}/read")
@@ -91,6 +93,7 @@ public class MessageController {
 
     /**
      * 已读所有评论
+     *
      * @param request 获取当前用户id
      */
     @GetMapping("/readAllComments")
@@ -105,6 +108,7 @@ public class MessageController {
 
     /**
      * 已读所有点赞
+     *
      * @param request 获取当前用户id
      */
     @GetMapping("/readAllLikes")

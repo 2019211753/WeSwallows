@@ -11,21 +11,31 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
+/**
+ * @author 山水夜止
+ */
 @Aspect
 @Component
-public class LogAspect
-{
-    //随着类加载初始化 获得日志对象
+public class LogAspect {
+    /**
+     * 随着类加载初始化 获得日志对象
+     */
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    //log()仅作为连接点签名
+    /**
+     * log()仅作为连接点签名
+     */
     @Pointcut("execution(* com.lrm.web.*.*(..))")
-    public void log() {}
+    public void log() {
+    }
 
-    //相当于@Before("execution(*  com.lrm.web.*.*(..))")
+    /**
+     * 相当于 @Before("execution(*  com.lrm.web.*.*(..))")
+     *
+     * @param joinPoint 方法
+     */
     @Before("log()")
-    public void doBefore(JoinPoint joinPoint)
-    {
+    public void doBefore(JoinPoint joinPoint) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         String url = request.getRequestURL().toString();

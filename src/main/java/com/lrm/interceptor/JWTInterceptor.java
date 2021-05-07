@@ -15,7 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 基于路径判断处理异常,拦截有问题的登录行为
+ * 基于路径判断处理异常，拦截有问题的登录行为
+ *
  * @author 山水夜止
  */
 public class JWTInterceptor extends HandlerInterceptorAdapter

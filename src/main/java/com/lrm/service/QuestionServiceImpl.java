@@ -106,6 +106,7 @@ public class QuestionServiceImpl implements QuestionService{
 
     /**
      * 管理页根据userid、标题（标签查询未做）搜索 前端传入QuestionQuery对象和userId.
+     *
      * @param pageable 分页对象
      * @param question 查询条件
      * @param userId 查询的用户Id.
@@ -129,6 +130,7 @@ public class QuestionServiceImpl implements QuestionService{
 
     /**
      * markdown转换
+     *
      * @param questionId 问题Id
      * @return 转换过的问题
      */
@@ -151,6 +153,7 @@ public class QuestionServiceImpl implements QuestionService{
 
     /**
      * 通过直接搜索标题查询
+     *
      * @param query 查询条件
      * @return 查询结果
      */
@@ -182,6 +185,7 @@ public class QuestionServiceImpl implements QuestionService{
 
     /**
      * 返回最新评论在三天之内的 影响力为前size个的问题
+     *
      * @param size 需要的个数
      * @return 满足条件的问题集合
      */

@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * @author 山水夜止
  */
-//应用于懒加载 在Repository层要使用@EntityGrahph配置在查询方法上 缺一不可
 @NamedEntityGraph(name = "User",
         attributeNodes = {@NamedAttributeNode("postComments"),
                 @NamedAttributeNode("receiveComments")})
@@ -60,19 +59,21 @@ public class User {
     @AccountInfoFormat
     private String password;
 
-
     /**
      * 用户头像 非必填 可以在前端显示默认值
      */
     private String avatar;
+
     /**
      * 用户邮箱 非必填 可以在前端显示默认值
      */
     private String email;
+
     /**
      * 用户QQ 非必填 可以在前端显示默认值
      */
     private String qqId;
+
     /**
      * 用户微信 非必填 可以在前端显示默认值
      */
@@ -88,10 +89,12 @@ public class User {
      * 个性签名 非必填 可以在前端显示默认值
      */
     private String personalSignature;
+
     /**
      * 院系 非必填 可以在前端显示默认值
      */
     private String academy;
+
     /**
      * 专业 非必填 可以在前端显示默认值
      */
@@ -108,6 +111,7 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date registerTime;
 
+
     /**
      * 没必要设置Remove 因为不打算做注销账号功能
      * 一user对多questions 发布的问题
@@ -115,7 +119,6 @@ public class User {
     @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Question> questions = new ArrayList<>();
-
 
     /**
      * 一user对多postComments 发布的评论
@@ -146,6 +149,7 @@ public class User {
      */
     @OneToMany(mappedBy = "postUser", fetch = FetchType.LAZY)
     private List<Comment> postDisLikes = new ArrayList<>();
+
 
     public Long getId() {
         return id;

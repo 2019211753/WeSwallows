@@ -34,7 +34,8 @@ public class TagController {
     }
 
     /**
-     * @param tag 前端封装好的Tag对象
+     * @param tag    前端封装好的Tag对象
+     * @param result 标签名校验处理
      * @return 返回报错信息; 已保存的Tag对象
      */
     @PostMapping("/input")

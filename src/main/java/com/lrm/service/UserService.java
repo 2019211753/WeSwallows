@@ -4,6 +4,9 @@ import com.lrm.po.User;
 
 import java.util.List;
 
+/**
+ * @author 山水夜止
+ */
 public interface UserService {
 
     User checkRegister(String username, String nickname);

@@ -111,6 +111,7 @@ public class CommentController
 
     /**
      * 删除评论
+     *
      * @param commentId 被删除的评论对应的Id
      * @param request 获取要执行删除操作的用户id
      * @return 报错信息
@@ -153,6 +154,7 @@ public class CommentController
 
     /**
      * 给评论点赞
+     *
      * @param commentId 被点赞的评论Id
      * @param questionId 被点赞的评论在哪个问题下 问题的Id
      * @param request 获取执行点赞动作的用户Id
@@ -212,6 +214,7 @@ public class CommentController
 
     /**
      * 点踩 到标准就隐藏
+     *
      * @param questionId 被点踩的评论在哪个问题下 问题的Id
      * @param request 获取执行点踩动作的用户Id
      * @param commentId 评论Id
@@ -255,6 +258,7 @@ public class CommentController
 
     /**
      * 评论上传的图片
+     *
      * @param commentId 评论的Id
      * @param req 获取上传图片的用户Id
      * @param files      多文件上传
@@ -364,6 +368,7 @@ public class CommentController
 
     /**
      * 配合dealComment插入数据
+     *
      * @param comment 被插入的评论对象
      * @param userId  当前用户对象 用于处理是否点过赞的
      */

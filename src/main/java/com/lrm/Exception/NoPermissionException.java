@@ -4,9 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-//定义的未被授权的异常类
-@Controller
-//状态码
+/**
+ * 访问未被授权资源时抛出的异常类
+ *
+ * @author 山水夜止
+ */
 @ResponseStatus(HttpStatus.UNAUTHORIZED)
 public class NoPermissionException extends RuntimeException {
     protected Integer errorCode;

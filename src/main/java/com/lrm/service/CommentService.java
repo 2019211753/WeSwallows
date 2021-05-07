@@ -5,6 +5,9 @@ import com.lrm.po.User;
 
 import java.util.List;
 
+/**
+ * @author 山水夜止
+ */
 public interface CommentService {
 
     Comment saveComment(Comment comment, Long questionId, User user);

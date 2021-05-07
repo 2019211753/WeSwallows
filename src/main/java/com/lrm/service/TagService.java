@@ -5,6 +5,9 @@ import com.lrm.po.Tag;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author 山水夜止
+ */
 public interface TagService {
 
     Tag saveTag(Tag type);

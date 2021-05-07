@@ -67,6 +67,7 @@ public class QuestionController {
     /**
      * 个人主页搜索 根据标题 返回个人发出的问题
      * 跟上面那个get方法的不同就是 一个是空的 一个不是空的
+     *
      * @param request 获得当前用户id
      * @param pageable 分页标准
      * @param question 封装的query对象
@@ -100,6 +101,7 @@ public class QuestionController {
 
     /**
      * 新增问题 初始化各部分属性
+     *
      * @param request 获得当前用户id
      * @param question 前端封装的question对象
      * @param bindingResult 配合@Valid检测是否为空
@@ -183,6 +185,7 @@ public class QuestionController {
 
     /**
      * 问题内容的图片上传
+     *
      * @param req 获得当前用户id
      * @param files      多文件上传
      * @param questionId 发布问题的Id

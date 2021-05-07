@@ -12,6 +12,8 @@ import java.util.List;
 public class DividePage {
 
     /**
+     * 将List转换为Page
+     *
      * @param <T>      list泛型
      * @param list     需要转换的List集合
      * @param pageable 分页格式

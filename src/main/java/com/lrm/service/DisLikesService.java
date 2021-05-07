@@ -5,8 +5,9 @@ import com.lrm.po.DisLikes;
 import com.lrm.po.Question;
 import com.lrm.po.User;
 
-import java.util.List;
-
+/**
+ * @author 山水夜止
+ */
 public interface DisLikesService {
 
     DisLikes saveDisLikes(DisLikes DisLikes, User postUser);

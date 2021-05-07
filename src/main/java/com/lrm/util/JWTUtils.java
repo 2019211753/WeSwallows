@@ -21,6 +21,7 @@ public class JWTUtils {
 
     /**
      * 生成token
+     *
      * @param map  传入payload
      * @return 返回token
      */
@@ -39,6 +40,7 @@ public class JWTUtils {
 
     /**
      * 验证token
+     *
      * @param token 令牌
      */
     public static void verify(String token){

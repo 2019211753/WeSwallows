@@ -18,6 +18,7 @@ import java.util.Map;
 
 /**
  * 基于路径判断处理异常, 拦截普通用户进入管理页的行为
+ *
  * @author 山水夜止
  */
 public class AuthorityInterceptor extends HandlerInterceptorAdapter
