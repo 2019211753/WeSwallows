@@ -37,7 +37,7 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter
                 boolean admin = Boolean.parseBoolean(decodedJWT.getClaim("admin").asString());
                 if (!admin) {
                     map.put("isSuccess", false);
-                    map.put("msg", "无访问权限");
+                    map.put("msg", "您没有管理员权限");
                     map.put("code", "403");
                 } else {
                     return true;

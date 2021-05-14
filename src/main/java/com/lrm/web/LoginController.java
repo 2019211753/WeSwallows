@@ -29,7 +29,7 @@ public class LoginController {
      * 注册
      *
      * @param result 校验异常处理
-     * @param user   前端封装好的User对象 包含用户名、密码、昵称
+     * @param user   前端封装好的User对象 包含账号、密码、昵称
      * @return 返回注册成功得到的User对象 需要确定泛型，否则操作无效了; 返回注册失败的报错信息
      */
     @PostMapping("/register")
@@ -59,7 +59,7 @@ public class LoginController {
         if(user1 != null)
         {
             //跳转到注册页面
-            return new Result<>(null, false, "该用户名或昵称已被注册过");
+            return new Result<>(null, false, "该账号或昵称已被注册过");
         } else {
 
             userService.saveUser(username, password, nickname);
@@ -78,7 +78,7 @@ public class LoginController {
     /**
      * 登录
      *
-     * @param username 用户名
+     * @param username 账号
      * @param password 密码
      * @return 登录成功的token; 登陆失败的报错信息
      */
@@ -90,11 +90,11 @@ public class LoginController {
 
         StringBuilder errorMsg = new StringBuilder(64);
         if (username == null & password != null) {
-            errorMsg.append("请输入用户名；");
+            errorMsg.append("请输入账号；");
             return new Result<>(null, false, new String(errorMsg));
 
         } else if (username == null & password == null) {
-            errorMsg.append("请输入用户名；");
+            errorMsg.append("请输入账号；");
         }
         if (password == null)
         {
@@ -102,7 +102,7 @@ public class LoginController {
             return new Result<>(null, false, new String(errorMsg));
         }
 
-        //检查用户名和密码在数据库中存在不。(不考虑是否注册过了)。存在登录；不存在报错。
+        //检查账号和密码在数据库中存在不。(不考虑是否注册过了)。存在登录；不存在报错。
         User user1 = userService.checkUser(username, password);
         if(user1 != null)
         {
@@ -122,7 +122,7 @@ public class LoginController {
             return new Result<>(hashMap, true, "登录成功");
         } else {
             //返回登录页面
-            return new Result<>(null, false,"用户名或密码错误");
+            return new Result<>(null, false, "账号或密码错误");
         }
     }
 }

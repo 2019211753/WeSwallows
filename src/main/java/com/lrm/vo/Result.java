@@ -1,6 +1,7 @@
 package com.lrm.vo;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lrm.Exception.NoPermissionException;
 import com.lrm.Exception.NotFoundException;
@@ -22,7 +23,7 @@ public class Result<T> {
 
     T data;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnore
     Boolean isSuccess;
 
     Integer code;

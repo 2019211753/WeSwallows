@@ -46,7 +46,7 @@ public class User {
     private String nickname;
 
     /**
-     * 前端必填 用户名 后端校验
+     * 前端必填 账号 后端校验
      */
     @AccountInfoFormat(message = "请输入正确账号格式————长度为7至12且不能包含汉字", need = "false")
     private String username;

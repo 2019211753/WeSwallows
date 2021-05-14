@@ -1,8 +1,8 @@
 spring:
   #数据库配置
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/Swallows?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=CST
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Swallows?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     #本地数据库账号密码
     username: root
     password: 123
@@ -11,7 +11,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    open-in-view: true
   resources:
+    #上传文件临时存放位置
     static-locations: classpath:/static/, file:${web.upload_path}
   #配置文件上传
   servlet:
@@ -19,11 +21,9 @@ spring:
       #文件上传是否开启
       enabled: true
       #单个数据的大小
-      max-file-size: 1Mb
+      max-file-size: 1MB
       #总数据的大小
-      max-request-size: 10Mb
-      #上传文件临时存放位置
-      location:
+      max-request-size: 10MB
 
 #文件上传路径
 web.upload_path: D:\springboot开发\雏雁项目\WeSwallows\src\main\resources\static\images

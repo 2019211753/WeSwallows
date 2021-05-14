@@ -18,9 +18,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
      * 这是Spring Data默认的命名方法的规范 它已经具有了意义 相当于已经被实现了 关键字And 只要符合规范就能解析
-     * 通过用户名和密码查找User对象
+     * 通过账号和密码查找User对象
      *
-     * @param username 用户名
+     * @param username 账号
      * @param password 密码
      * @return 对应User对象
      */
@@ -37,9 +37,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     //登录
 
     /**
-     * 通过用户名查找User对象
+     * 通过账号查找User对象
      *
-     * @param username 用户名
+     * @param username 账号
      * @return 对应User对象
      */
     User findByUsername(String username);

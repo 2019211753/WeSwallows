@@ -86,20 +86,6 @@ public class QuestionController {
     }
 
     /**
-     * @return 返回所有第一级标签
-     */
-    @GetMapping("/questions/tags")
-    public Result<Map<String, Object>> showTags() {
-        Map<String, Object> hashMap = new HashMap<>(1);
-
-        List<Tag> tags = tagService.listTagTop();
-
-        hashMap.put("tags", tags);
-
-        return new Result<>(hashMap, true, "");
-    }
-
-    /**
      * 新增问题 初始化各部分属性
      *
      * @param request 获得当前用户id
@@ -113,35 +99,38 @@ public class QuestionController {
         Map<String, Object> hashMap = new HashMap<>(1);
 
         Long userId = GetTokenInfo.getCustomUserId(request);
-
-        //后端检验valid 如果校验失败 返回input页面
-        if(bindingResult.hasErrors())
-        {
-            hashMap.put("questions", question);
-            return new Result<>(hashMap, false, "标题、内容、概述均不能为空");
-        }
-
         User user = userService.getUser(userId);
-        question.setUser(user);
 
-        //令前端只传回tagIds而不是tag对象 将它转换为List<Tag> 在service层找到对应的Tag保存到数据库
-        question.setTags(tagService.listTag(question.getTagIds()));
-        Question q;
+        if (user.getCanSpeak()) {
+            //后端检验valid 如果校验失败 返回input页面
+            if (bindingResult.hasErrors()) {
+                hashMap.put("questions", question);
+                return new Result<>(hashMap, false, "标题、内容、概述均不能为空");
+            }
 
-        if (question.getId() == null) {
-            q = questionService.saveQuestion(question, user);
+            question.setUser(user);
+
+            //令前端只传回tagIds而不是tag对象 将它转换为List<Tag> 在service层找到对应的Tag保存到数据库
+            question.setTags(tagService.listTag(question.getTagIds()));
+            Question q;
+
+            if (question.getId() == null) {
+                q = questionService.saveQuestion(question, user);
+            } else {
+                hashMap.put("questions", question);
+                return new Result<>(hashMap, false, "该问题已存在");
+            }
+
+            if (q != null) {
+                hashMap.put("questions", question);
+                return new Result<>(hashMap, true, "发布成功");
+            } else {
+                return new Result<>(null, false, "发布失败");
+            }
         } else {
-            hashMap.put("questions", question);
-            return new Result<>(hashMap, false, "该问题已存在");
+            return new Result<>(null, false, "您无权限发布问题");
         }
 
-        if (q == null)
-        {
-            return new Result<>(null, false, "发布失败");
-        } else {
-            hashMap.put("questions", question);
-            return new Result<>(hashMap, true,"发布成功");
-        }
     }
 
 

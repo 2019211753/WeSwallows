@@ -40,7 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/comment.html")
                 .excludePathPatterns("/editmine.html")
                 .excludePathPatterns("/editor.html")
-                .excludePathPatterns("files.html")
+                .excludePathPatterns("/files.html")
                 .excludePathPatterns("/homepage.html")
                 .excludePathPatterns("/honor.html")
                 .excludePathPatterns("/loginn.html")

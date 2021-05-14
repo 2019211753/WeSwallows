@@ -1,8 +1,8 @@
 spring:
   #数据库配置
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/Swallows?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=CST
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Swallows?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     #本地数据库账号密码
     username: root
     password: 123
@@ -11,6 +11,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    open-in-view: true
   resources:
     #上传文件临时存放位置
     static-locations: classpath:/static/, file:${web.upload_path}

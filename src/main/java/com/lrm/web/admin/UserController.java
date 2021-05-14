@@ -19,7 +19,7 @@ public class UserController {
     UserService userService;
 
     /**
-     * @param nickname 用户名
+     * @param nickname 昵称
      * @return 查询得到的用户
      */
     @PostMapping("/searchUser")

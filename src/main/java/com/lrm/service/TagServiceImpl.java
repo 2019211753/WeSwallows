@@ -68,7 +68,7 @@ public class TagServiceImpl implements TagService {
     }
 
     /**
-     * 通过用户名找标签 查询是否重复
+     * 通过标签名找标签 查询是否重复
      */
     @Override
     public Tag getTagByName(String name) {

@@ -85,27 +85,31 @@ public class CommentController
 
         Long questionId = comment.getQuestion().getId();
 
-        //如果是空 报错
-        if (bindingResult.hasErrors()) {
-            hashMap.put("comments", comment);
-            return new Result<>(hashMap, false, "内容不能为空");
-        }
+        if (postUser.getCanSpeak()) {
+            //如果是空 报错
+            if (bindingResult.hasErrors()) {
+                hashMap.put("comments", comment);
+                return new Result<>(hashMap, false, "内容不能为空");
+            }
 
-        //保存
-        commentService.saveComment(comment, questionId, postUser);
+            //保存
+            commentService.saveComment(comment, questionId, postUser);
 
-        //如果有了，更新问题的最新评论时间
-        if (commentService.getComment(comment.getId()) != null) {
+            //如果有了，更新问题的最新评论时间
+            if (commentService.getComment(comment.getId()) != null) {
 
-            Question question = questionService.getQuestion(questionId);
-            question.setNewCommentedTime(new Date());
-            questionService.saveQuestion(question);
+                Question question = questionService.getQuestion(questionId);
+                question.setNewCommentedTime(new Date());
+                questionService.saveQuestion(question);
 
-            hashMap.put("comments", comment);
+                hashMap.put("comments", comment);
 
-            return new Result<>(hashMap, true, "发布成功");
+                return new Result<>(hashMap, true, "发布成功");
+            } else {
+                return new Result<>(null, false, "发布失败");
+            }
         } else {
-            return new Result<>(null, false, "发布失败");
+            return new Result<>(null, false, "您无权限发布评论");
         }
     }
 

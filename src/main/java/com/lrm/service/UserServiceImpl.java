@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService
     private UserRepository userRepository;
 
     //验证该用户是否已经注册
-    //注册了的不能再注册（用户名或昵称是否已经存在）
+    //注册了的不能再注册（账号或昵称是否已经存在）
     //注册了的可以直接登录
 
     /**
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService
      *
      * @param username 账号
      * @param password 密码
-     * @param nickname 用户名
+     * @param nickname 昵称
      */
     @Override
     @Transactional

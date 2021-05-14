@@ -50,10 +50,7 @@ public class AdminQuestionController {
     @PostMapping("searchQuestions")
     public Result<Map<String, Object>> searchQuestion(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                                               QuestionQuery question, Long userId) {
-        Map<String, Object> hashMap = new HashMap<>(2);
-
-        //先返回第一级的标签
-        hashMap.put("tags", tagService.listTagTop());
+        Map<String, Object> hashMap = new HashMap<>(1);
 
         //通过标题、userId查找
         hashMap.put("pages", questionService.listQuestionPlusUserId(pageable, question, userId));

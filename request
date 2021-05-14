@@ -2,15 +2,15 @@
 
 Likes和disLikes能否用泛型解决
 
-该忽略的属性忽略 如信息处理的comment不用有子评论数据
+该忽略的属性忽略 如信息处理的comment不用有子评论数据 √
 
-JsonBack
+JsonBack √
 
 标签的结构
 
 一堆postUserId0
 
-comment对象里的replyComments和question省略
+comment对象里的replyComments和question省略 √
 
 valid校验数据库里的了
 
