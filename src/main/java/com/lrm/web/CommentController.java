@@ -67,6 +67,56 @@ public class CommentController
     }
 
     /**
+     * @param comments 被处理的comment集合 我更改的只是comment的receiveComment[]属性
+     *                 并没有更改他们的父级评论属性 所以仍然可以根据他们的parentComment获取nickname
+     * @param userId   当前用户对象 用于处理是否点过赞的
+     * @return 给前端的comment集合
+     */
+    List<Comment> dealComment(List<Comment> comments, Long userId) {
+        if (comments.size() != 0) {
+            for (Comment comment : comments) {
+                insertAttribute(comment, userId);
+                List<Comment> receiveComments = comment.getReceiveComments();
+                if (receiveComments.size() != 0) {
+                    for (Comment receiveComment : receiveComments) {
+                        receiveComment.setParentCommentName(receiveComment.getParentComment().getPostUser().getNickname());
+                        insertAttribute(receiveComment, userId);
+                    }
+                }
+            }
+        }
+        return comments;
+    }
+
+    /**
+     * 配合dealComment插入数据
+     *
+     * @param comment 被插入的评论对象
+     * @param userId  当前用户对象 用于处理是否点过赞的
+     */
+    void insertAttribute(Comment comment, Long userId) {
+        //得到发布问题的人
+        User postUser = comment.getPostUser();
+
+        if (likesService.getLikes(userService.getUser(userId), comment) != null) {
+            comment.setApproved(true);
+        } else {
+            comment.setApproved(false);
+        }
+
+        if (disLikesService.getDisLikes(userService.getUser(userId), comment) != null) {
+            comment.setDisapproved(true);
+        } else {
+            comment.setDisapproved(false);
+        }
+
+        //这里到底要不要用计算力代替空间还要考虑
+        comment.setAvatar(postUser.getAvatar());
+        comment.setNickname(postUser.getNickname());
+    }
+
+
+    /**
      * 新增评论
      * 提交表单后 到这里 然后得到id 然后刷新评论
      *
@@ -345,55 +395,5 @@ public class CommentController
         Question question = questionService.getQuestion(questionId);
         question.setImpact(question.getImpact() + p * 2 * (maxNum1 - maxNum0) + p * 12);
         questionService.saveQuestion(question);
-    }
-
-    /**
-     * @param comments 被处理的comment集合 我更改的只是comment的receiveComment[]属性
-     * 并没有更改他们的父级评论属性 所以仍然可以根据他们的parentComment获取nickname
-     * @param userId   当前用户对象 用于处理是否点过赞的
-     * @return 给前端的comment集合
-     */
-    List<Comment> dealComment(List<Comment> comments, Long userId) {
-        if (comments.size() != 0) {
-            for (Comment comment : comments) {
-                insertAttribute(comment, userId);
-                List<Comment> replyComments = comment.getReplyComments();
-                if (replyComments.size() != 0) {
-                    for (Comment replyComment : replyComments) {
-                        replyComment.setParentCommentName(replyComment.getParentComment().getPostUser().getNickname());
-                        insertAttribute(replyComment, userId);
-                    }
-                }
-            }
-        }
-        return comments;
-    }
-
-
-    /**
-     * 配合dealComment插入数据
-     *
-     * @param comment 被插入的评论对象
-     * @param userId  当前用户对象 用于处理是否点过赞的
-     */
-    void insertAttribute(Comment comment, Long userId) {
-        //得到发布问题的人
-        User postUser = comment.getPostUser();
-
-        if (likesService.getLikes(userService.getUser(userId), comment) != null) {
-            comment.setApproved(true);
-        } else {
-            comment.setApproved(false);
-        }
-
-        if (disLikesService.getDisLikes(userService.getUser(userId), comment) != null) {
-            comment.setDisapproved(true);
-        } else {
-            comment.setDisapproved(false);
-        }
-
-        //这里到底要不要用计算力代替空间还要考虑
-        comment.setAvatar(postUser.getAvatar());
-        comment.setNickname(postUser.getNickname());
     }
 }

@@ -54,9 +54,9 @@ public class TagController {
             return new Result<>(hashMap, false, "不能添加重复的标签");
         }
 
-        //数据库中同id的tag 检查是新增还是修改
-        Tag tag1 = tagService.getTag(tag.getId());
-        if(tag1 == null) {
+        //检查是标签新增还是修改
+
+        if (tag.getId() == null) {
             Tag t = tagService.saveTag(tag);
             if (t == null) {
                 return new Result<>(hashMap, false, "新增失败");

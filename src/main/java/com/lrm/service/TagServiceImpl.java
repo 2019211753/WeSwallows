@@ -28,7 +28,7 @@ public class TagServiceImpl implements TagService {
     @Transactional
     @Override
     public Tag saveTag(Tag tag) throws NotFoundException {
-        Long parentTagId = tag.getParentTag().getId();
+        Long parentTagId = tag.getParentTagId0();
         if (parentTagId != -1) {
             Optional<Tag> parentTag = tagRepository.findById(parentTagId);
             if (!parentTag.isPresent()) {

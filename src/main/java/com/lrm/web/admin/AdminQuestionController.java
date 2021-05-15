@@ -48,8 +48,8 @@ public class AdminQuestionController {
      * @return 查询结果.
      */
     @PostMapping("searchQuestions")
-    public Result<Map<String, Object>> searchQuestion(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                              QuestionQuery question, Long userId) {
+    public Result<Map<String, Object>> searchQuestion(@PageableDefault(size = 6, sort = {"createTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+                                                      QuestionQuery question, Long userId) {
         Map<String, Object> hashMap = new HashMap<>(1);
 
         //通过标题、userId查找
@@ -116,7 +116,7 @@ public class AdminQuestionController {
      * @param request    获取当前用户属性
      * @return 成功/失败
      */
-    @GetMapping("/questions/{questionId}/delete")
+    @GetMapping("/question/{questionId}/delete")
     public Result<Map<String, Object>> delete(@PathVariable Long questionId, HttpServletRequest request) {
         return questionController.delete(questionId, request);
     }
