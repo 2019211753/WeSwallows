@@ -101,6 +101,10 @@ GET http://localhost:8080/question/{questionId}/comments
 
 POST http://localhost:8080/question/{questionId}/comment
 
+#### 评论及问题插入图片
+
+POST http://localhost:8080/question/{questionId}/uploadPhotos
+
 #### 点赞评论
 
 GET http://localhost:8080/question/{questionId}/comment/{commentId}/approve

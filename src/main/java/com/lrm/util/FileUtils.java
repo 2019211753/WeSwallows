@@ -6,6 +6,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * 文件控制类
+ *
+ * @author 山水夜止
+ */
 public class FileUtils {
 
     /**
@@ -44,21 +49,11 @@ public class FileUtils {
      */
     public static String upload(MultipartFile file, String path, String fileName) {
 
-        //获得头像文件夹
-        File folder = new File(path);
-
-        //如果头像文件夹不存在，创建文件夹 否则删除文件夹，然后再创建文件夹
-        if (folder.exists()) {
-            FileUtils.deleteFile(folder);
-        }
-
-        folder.mkdirs();
-
         // 生成新的文件和目录名
         String newFileName = getFileName(fileName);
 
         String realPath = path + "/" + newFileName;
-        folder = new File(realPath);
+        File folder = new File(realPath);
 
         try {
             //保存文件
@@ -88,5 +83,31 @@ public class FileUtils {
      */
     public static String getFileName(String fileOriginName) {
         return UUID.randomUUID() + getSuffix(fileOriginName);
+    }
+
+    /**
+     * @param path 需要重新建立的文件夹路径
+     */
+    public static void rebuildFolder(String path) {
+        //需要重建建立的文件夹
+        File folder = new File(path);
+
+        //如果文件夹不存在，创建文件夹 否则删除文件夹，然后再创建文件夹
+        if (folder.exists()) {
+            FileUtils.deleteFile(folder);
+        }
+
+        folder.mkdirs();
+    }
+
+
+    /**
+     * @param path 需要建立的文件夹
+     */
+    public static void buildFolder(String path) {
+        //需要建立的文件夹
+        File folder = new File(path);
+
+        folder.mkdirs();
     }
 }

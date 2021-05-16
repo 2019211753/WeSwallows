@@ -4,10 +4,12 @@ import com.lrm.Exception.NoPermissionException;
 import com.lrm.Exception.NotFoundException;
 import com.lrm.po.*;
 import com.lrm.service.*;
+import com.lrm.util.FileUtils;
 import com.lrm.util.GetTokenInfo;
 import com.lrm.vo.Magic;
 import com.lrm.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,6 +42,10 @@ public class CommentController
 
     @Autowired
     private DisLikesService disLikesService;
+
+    @Value("${web.upload-path}")
+    private String path;
+
 
     /**
      * 展示所有评论
@@ -313,41 +319,47 @@ public class CommentController
     /**
      * 评论上传的图片
      *
-     * @param commentId 评论的Id
-     * @param req 获取上传图片的用户Id
      * @param files      多文件上传
      * @param questionId 发布问题的Id
      * @return 多文件在本地的路径
      * @throws IOException 文件大小溢出
      */
     @PostMapping("/uploadPhotos")
-    public Result<Map<String, Object>> uploadPhotos(MultipartFile[] files, HttpServletRequest req, @PathVariable Long questionId, @RequestParam Long commentId) throws IOException {
+    public Result<Map<String, Object>> uploadPhotos(MultipartFile[] files, @RequestParam Long questionId) throws IOException {
         Map<String, Object> hashMap = new HashMap<>(1);
 
         //创建存放文件的文件夹的流程
-        Long userId = GetTokenInfo.getCustomUserId(req);
-        SimpleDateFormat sdf = new SimpleDateFormat("/yyyy-MM-dd/");
-        String format = sdf.format(new Date());
-        String path = "/upload/" + userId + "/questions/" + questionId + "/comments/" + format;
 
-        //新文件夹目录绝对路径
-        String realPath = req.getServletContext().getRealPath(path);
+        //文件夹的绝对路径
+        String realPath;
+        String suffixPath;
+
+        if (questionId == null) {
+            suffixPath = "/" + "questionPhotos/";
+        } else {
+            suffixPath = "/" + "questionPhotos/" + questionId + "/comments";
+        }
+        realPath = path + suffixPath;
+
+        //建立文件夹
+        FileUtils.buildFolder(path);
+
         List<String> pathList = new ArrayList<>();
-        for (MultipartFile uploadFile : files) {
-            File folder = new File(realPath);
-            if (!folder.isDirectory()) {
-                folder.mkdirs();
-            }
-
-            //保存文件到文件夹中
+        for (MultipartFile file : files) {
 
             //所上传的文件原名
-            String oldName = uploadFile.getOriginalFilename();
+            String oldName = file.getOriginalFilename();
 
-            //新文件名
-            String newName = UUID.randomUUID().toString() + oldName.substring(oldName.lastIndexOf("."));
-            uploadFile.transferTo(new File(folder, newName));
-            pathList.add(realPath + newName);
+
+            //保存文件到文件夹中 获得新文件名
+            String newName = FileUtils.upload(file, realPath, oldName);
+
+            if (newName == null) {
+                return new Result<>(hashMap, false, "上传失败");
+            }
+
+            pathList.add("images/" + suffixPath + "/" + newName);
+
         }
 
         hashMap.put("photos", pathList);

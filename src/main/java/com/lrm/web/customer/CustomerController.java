@@ -73,11 +73,11 @@ public class CustomerController {
         //头像文件夹的绝对路径
         String realPath = path + "/" + userId + "/avatar";
 
-
         //所上传的文件原名
         String oldName = file.getOriginalFilename();
 
         //保存文件到文件夹中 获得新文件名
+        FileUtils.rebuildFolder(realPath);
         String newName = FileUtils.upload(file, realPath, oldName);
 
         if (newName != null) {
