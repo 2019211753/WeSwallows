@@ -30,7 +30,6 @@ public class Question {
     @NotBlank(message = "请输入内容")
     private String content;
 
-
     /**
      * 问题描述 前端必填
      */
@@ -91,13 +90,11 @@ public class Question {
     @Temporal(TemporalType.TIMESTAMP)
     private Date newCommentedTime;
 
-
     /**
-     * 节约空间不入库
-     * 前端传回多个标签 用,分割的字符组合
+     * 前端传回多个标签 用,分割的字符组合 并且存储时要按id顺序重排 搜索时按标签查找需要用到这个属性
      **/
-    @Transient
     private String tagIds;
+
 
     /**
      * 节约空间不入库

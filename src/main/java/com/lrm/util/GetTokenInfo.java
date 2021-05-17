@@ -23,18 +23,31 @@ public class GetTokenInfo {
     }
 
     /**
+     * @param request 获得当前token
+     * @return 得到当前用户昵称
+     * @throws JWTVerificationException JWT鉴权错误
+     */
+    public static String getCustomNickname(HttpServletRequest request) throws JWTVerificationException {
+        String token = request.getHeader("token");
+        DecodedJWT decodedJWT = JWTUtils.getToken(token);
+        //注意！！！这里登陆时转化为token的map中是什么数据类型，取出来就得是什么类型！！不能直接asLong!
+        String nickname = decodedJWT.getClaim("nickname").asString();
+        return nickname;
+    }
+
+    /**
      * 验证是否是管理页
      *
      * @param request 获得当前token
      * @return true是 false不是
      * @throws JWTVerificationException JWT鉴权错误
      */
-    public static Boolean isAdmin(HttpServletRequest request) throws JWTVerificationException
-    {
+    public static Boolean isAdmin(HttpServletRequest request) throws JWTVerificationException {
         String token = request.getHeader("token");
         DecodedJWT decodedJWT = JWTUtils.getToken(token);
         Boolean isAdmin = Boolean.parseBoolean(decodedJWT.getClaim("isAdmin").asString());
         return isAdmin;
     }
+
 
 }

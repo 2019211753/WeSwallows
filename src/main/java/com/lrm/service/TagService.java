@@ -22,6 +22,8 @@ public interface TagService {
 
     Set<Tag> listTags(Tag tag);
 
+    String listTagIdsFromSmallToBig(String tagIds);
+
     Tag updateTag(Tag tag);
 
     void deleteTag(Long id);

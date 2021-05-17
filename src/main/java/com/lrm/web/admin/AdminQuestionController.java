@@ -24,7 +24,7 @@ import java.util.Map;
 import static com.lrm.web.customer.QuestionController.getMapResult;
 
 /**
- * @author 山水夜止.
+ * @author 山水夜止
  */
 @RequestMapping("/admin")
 @RestController
@@ -40,20 +40,20 @@ public class AdminQuestionController {
 
 
     /**
-     * 管理页根据userid、标题（标签查询未做）搜索 前端传入QuestionQuery对象和userId.
+     * 管理页根据标题、标签、用户昵称搜索 前端传入QuestionQuery对象和nickname.
      *
      * @param pageable 分页对象
      * @param question 查询条件
-     * @param userId   查询的用户Id.
+     * @param nickname 查询的用户昵称
      * @return 查询结果.
      */
     @PostMapping("searchQuestions")
     public Result<Map<String, Object>> searchQuestion(@PageableDefault(size = 6, sort = {"createTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                                      QuestionQuery question, Long userId) {
+                                                      QuestionQuery question, String nickname) {
         Map<String, Object> hashMap = new HashMap<>(1);
 
-        //通过标题、userId查找
-        hashMap.put("pages", questionService.listQuestionPlusUserId(pageable, question, userId));
+        //通过标题、标签、昵称查找
+        hashMap.put("pages", questionService.listQuestionPlusNickname(pageable, question, nickname));
         return new Result<>(hashMap, true, "搜索完成");
     }
 

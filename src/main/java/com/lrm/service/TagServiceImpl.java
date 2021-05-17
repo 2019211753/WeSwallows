@@ -122,12 +122,31 @@ public class TagServiceImpl implements TagService {
         {
             return tagSet;
         }
-        for (Tag tag1 : tags)
-        {
+        for (Tag tag1 : tags) {
             listTags(tag1);
 
         }
         return tagSet;
     }
+
+    /**
+     * 如tagIds = 1,3,2 转换为1,2,3
+     *
+     * @param tagIds 需要转换的字符串
+     * @return 转换完成的tagIds
+     */
+    @Override
+    public String listTagIdsFromSmallToBig(String tagIds) {
+        String[] ids = tagIds.split(",");
+        Arrays.sort(ids);
+        StringBuilder tagIdsBuilder = new StringBuilder();
+        tagIdsBuilder.append(ids[0]);
+        for (int i = 1; i < ids.length; i++) {
+            tagIdsBuilder.append(",");
+            tagIdsBuilder.append(ids[i]);
+        }
+        return tagIdsBuilder.toString();
+    }
+
 
 }

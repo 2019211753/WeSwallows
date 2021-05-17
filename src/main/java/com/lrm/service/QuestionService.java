@@ -35,7 +35,7 @@ public interface QuestionService {
     Page<Question> listQuestion(String query, Pageable pageable);
 
     //返回用户自己的博客&管理页搜索
-    Page<Question> listQuestionPlusUserId(Pageable pageable, QuestionQuery question, Long userId);
+    Page<Question> listQuestionPlusNickname(Pageable pageable, QuestionQuery question, String ncikname);
 
 
     Question getAndConvert(Long questionId);

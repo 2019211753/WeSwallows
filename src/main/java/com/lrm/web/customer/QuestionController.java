@@ -45,42 +45,42 @@ public class QuestionController {
     /**
      * 返回个人主页的个人问题
      *
-     * @param request  获得当前用户id
+     * @param request  获得当前用户昵称
      * @param pageable 分页对象
-     * @param question 因为有一堆数据，所以查询条件封装成QuestionQuery了
      * @return 个人所发问题的列表
      */
     @GetMapping("/questions")
     public Result<Map<String, Object>> showQuestions(@PageableDefault(size = 6, sort = {"createTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                                                     QuestionQuery question, HttpServletRequest request) {
+                                                     HttpServletRequest request) {
         Map<String, Object> hashMap = new HashMap<>(1);
 
-        //得到当前用户的userId
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        //得到当前用户的昵称
+        String nickname = GetTokenInfo.getCustomNickname(request);
 
         //这个方法只抽取title属性查询
-        hashMap.put("pages", questionService.listQuestionPlusUserId(pageable, question, userId));
+        hashMap.put("pages", questionService.listQuestionPlusNickname(pageable, new QuestionQuery(), nickname));
 
         return new Result<>(hashMap, true, "");
     }
 
     /**
      * 个人主页搜索 根据标题 返回个人发出的问题
-     * 跟上面那个get方法的不同就是 一个是空的 一个不是空的
+     * 跟上面那个get方法的不同就是 一个question是空的 一个不是空的
      *
-     * @param request 获得当前用户id
+     * @param request  获得当前用户id
      * @param pageable 分页标准
      * @param question 封装的query对象
-     * @return pages:查询所得问题分页
+     * @return 查询所得问题分页
      */
     @PostMapping("/searchQuestions")
     public Result<Map<String, Object>> search(@PageableDefault(size = 6, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                                               QuestionQuery question, HttpServletRequest request) {
         Map<String, Object> hashMap = new HashMap<>(1);
 
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        //得到当前用户的昵称
+        String nickname = GetTokenInfo.getCustomNickname(request);
 
-        hashMap.put("pages", questionService.listQuestionPlusUserId(pageable, question, userId));
+        hashMap.put("pages", questionService.listQuestionPlusNickname(pageable, question, nickname));
 
         return new Result<>(hashMap, true, "搜索完成");
     }

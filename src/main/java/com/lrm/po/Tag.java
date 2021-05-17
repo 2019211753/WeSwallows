@@ -54,7 +54,7 @@ public class Tag {
      * 不用级联删除 这块需要返回错误页面 告知管理员标签下有博客的情况下不能删除标签
      */
     @JsonBackReference
-    @ManyToMany(mappedBy = "tags", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "tags")
     private List<Question> questions = new ArrayList<>();
 
 
@@ -128,6 +128,7 @@ public class Tag {
     public int hashCode() {
         return Objects.hash(getId(), getName(), getSonTags(), getQuestions());
     }
+
 
 //    会无限迭代 先不写toString了
 //    @Override

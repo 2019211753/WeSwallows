@@ -12,7 +12,7 @@ public class ProcessData {
      * @param list 某String集合
      * @return 去重后的集合
      */
-    public static List<String> removeDupicateElement(List<String> list) {
+    public static List<String> removeDuplicateElement(List<String> list) {
         List<String> listNew = new ArrayList<String>();
         for (String str : list) {
             if (!listNew.contains(str)) {

@@ -23,12 +23,15 @@ import javax.persistence.criteria.*;
 import java.util.*;
 
 /**
- * @author 山水夜止.
+ * @author 山水夜止
  */
 @Service
-public class QuestionServiceImpl implements QuestionService{
+public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Autowired
+    private TagService tagService;
 
     /**
      * 保存问题.
@@ -41,6 +44,8 @@ public class QuestionServiceImpl implements QuestionService{
     @Transactional
     @Override
     public Question saveQuestion(Question question, User user) {
+        //将tagIds按顺序重排
+        question.setTagIds(tagService.listTagIdsFromSmallToBig(question.getTagIds()));
         //时间是date对象所以新增的时候需要初始化 否则为null;
         question.setCreateTime(new Date());
         question.setNewCommentedTime(new Date());
@@ -109,19 +114,28 @@ public class QuestionServiceImpl implements QuestionService{
      *
      * @param pageable 分页对象
      * @param question 查询条件
-     * @param userId 查询的用户Id.
+     * @param nickname 查询的用户昵称
      * @return 查询结果.
      */
     @Override
-    public Page<Question> listQuestionPlusUserId(Pageable pageable, QuestionQuery question, Long userId) {
+    public Page<Question> listQuestionPlusNickname(Pageable pageable, QuestionQuery question, String nickname) {
         return questionRepository.findAll((root, cq, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
             //""是空字节，而不是null 下面这种写法 而不是Question.getTitle().equals("")是防止它是null 从而造成空指针异常
             if (question.getTitle() != null && !"".equals(question.getTitle())) {
                 predicates.add(cb.like(root.get("title"), "%" + question.getTitle() + "%"));
             }
-            Join<Object, Object> join = root.join("user");
-            predicates.add(cb.equal(join.get("id"), userId));
+            if (nickname != null && !"".equals(nickname)) {
+                Join<Object, Object> join = root.join("user");
+                predicates.add(cb.equal(join.get("nickname"), nickname));
+            }
+
+            String tagIds = question.getTagIds();
+            if (tagIds != null && !"".equals(tagIds)) {
+                String newTagIds = tagService.listTagIdsFromSmallToBig(tagIds);
+
+                predicates.add(cb.like(root.get("tagIds"), "%" + newTagIds + "%"));
+            }
 
             cq.where(predicates.toArray(new Predicate[0]));
             return null;
@@ -202,7 +216,7 @@ public class QuestionServiceImpl implements QuestionService{
 
         if(questions.size() > size-1)
         {
-            return questions.subList(0,size-1);
+            return questions.subList(0, size - 1);
         }
         return questions;
         }
@@ -214,12 +228,12 @@ public class QuestionServiceImpl implements QuestionService{
     @Override
     public Map<String, Map<String, List<Question>>> archivesQuestion(Long userId) {
         List<String> years = questionRepository.findGroupYear(userId);
-        years = ProcessData.removeDupicateElement(years);
+        years = ProcessData.removeDuplicateElement(years);
         Map<String, Map<String, List<Question>>> map = new HashMap<>(years.size());
         for(String year : years)
         {
             List<String> months = questionRepository.findGroupMonthByYear(year, userId);
-            months = ProcessData.removeDupicateElement(months);
+            months = ProcessData.removeDuplicateElement(months);
             Map<String, List<Question>> hashMap = new HashMap<>(months.size());
             for (String month : months)
             {
