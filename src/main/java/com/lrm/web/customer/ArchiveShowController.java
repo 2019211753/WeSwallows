@@ -1,7 +1,7 @@
 package com.lrm.web.customer;
 
 import com.lrm.service.QuestionService;
-import com.lrm.util.GetTokenInfo;
+import com.lrm.util.TokenInfo;
 import com.lrm.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +31,7 @@ public class ArchiveShowController {
     public Result<Map<String, Object>> archives(HttpServletRequest request) {
         Map<String, Object> hashMap = new HashMap<>(2);
 
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        Long userId = TokenInfo.getCustomUserId(request);
 
         hashMap.put("archiveMap", questionService.archivesQuestion(userId));
         hashMap.put("QuestionCount", questionService.countQuestionByUser(userId));

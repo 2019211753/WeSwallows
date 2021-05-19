@@ -6,9 +6,8 @@ import com.lrm.po.Likes;
 import com.lrm.po.User;
 import com.lrm.service.CommentService;
 import com.lrm.service.LikesService;
-import com.lrm.util.GetTokenInfo;
+import com.lrm.util.TokenInfo;
 import com.lrm.vo.Result;
-import com.lrm.web.IndexController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +42,7 @@ public class MessageController {
     public Result<Map<String, Object>> messages(HttpServletRequest request) throws JWTVerificationException {
         Map<String, Object> hashMap = new HashMap<>(2);
 
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        Long userId = TokenInfo.getCustomUserId(request);
 
         List<Comment> comments = commentService.listAllNotReadComment(userId);
 
@@ -98,7 +97,7 @@ public class MessageController {
      */
     @GetMapping("/readAllComments")
     public void readAllComments(HttpServletRequest request) {
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        Long userId = TokenInfo.getCustomUserId(request);
         List<Comment> comments = commentService.listAllNotReadComment(userId);
         for (Comment comment : comments) {
             comment.setLooked(true);
@@ -113,7 +112,7 @@ public class MessageController {
      */
     @GetMapping("/readAllLikes")
     public void readAllLikes(HttpServletRequest request) {
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        Long userId = TokenInfo.getCustomUserId(request);
 
         List<Likes> likes = likesService.listAllNotReadComment(userId);
         for (Likes likes1 : likes) {

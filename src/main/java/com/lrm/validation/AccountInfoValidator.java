@@ -47,6 +47,8 @@ public class AccountInfoValidator implements ConstraintValidator<AccountInfoForm
         }
 
         String msg = (String) value;
+
+        //因为拦截器会拦截到奇怪的地方 所以只好在这里让已经在数据库里的密码直接通过
         if (msg.length() >= 5) {
             String top5 = msg.substring(0, 5);
             if ("M#D5+".equals(top5)) {

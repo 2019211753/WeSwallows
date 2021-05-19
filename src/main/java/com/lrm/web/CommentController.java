@@ -5,7 +5,7 @@ import com.lrm.Exception.NotFoundException;
 import com.lrm.po.*;
 import com.lrm.service.*;
 import com.lrm.util.FileUtils;
-import com.lrm.util.GetTokenInfo;
+import com.lrm.util.TokenInfo;
 import com.lrm.vo.Magic;
 import com.lrm.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -58,7 +56,7 @@ public class CommentController
     public Result<Map<String, Object>> comments(@PathVariable Long questionId, HttpServletRequest request) {
         Map<String, Object> hashMap = new HashMap<>(4);
 
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        Long userId = TokenInfo.getCustomUserId(request);
 
         //分别返回两类评论和对应点赞
         List<Comment> comments1 = commentService.listCommentByQuestionId(questionId, false);
@@ -136,7 +134,7 @@ public class CommentController
         Map<String, Object> hashMap = new HashMap<>(1);
 
         //得到当前用户
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        Long userId = TokenInfo.getCustomUserId(request);
         User postUser = userService.getUser(userId);
 
         Long questionId = comment.getQuestion().getId();
@@ -181,8 +179,8 @@ public class CommentController
         Map<String, Object> hashMap = new HashMap<>(1);
 
         //得到当前用户 以判断权限
-        User customUser = userService.getUser(GetTokenInfo.getCustomUserId(request));
-        Boolean admin = GetTokenInfo.isAdmin(request);
+        User customUser = userService.getUser(TokenInfo.getCustomUserId(request));
+        Boolean admin = TokenInfo.isAdmin(request);
 
         Comment comment = commentService.getComment(commentId);
 
@@ -227,7 +225,7 @@ public class CommentController
         if (comment.getAnswer()) {
 
             //当前用户 点赞的人
-            Long postUserId = GetTokenInfo.getCustomUserId(request);
+            Long postUserId = TokenInfo.getCustomUserId(request);
             User postUser = userService.getUser(postUserId);
             //被点赞的人
             User receiveUser = comment.getReceiveUser();
@@ -283,7 +281,7 @@ public class CommentController
     public void disapprove(@PathVariable Long questionId, @PathVariable Long commentId, HttpServletRequest request) {
         Comment comment = commentService.getComment(commentId);
 
-        Long postUserId = GetTokenInfo.getCustomUserId(request);
+        Long postUserId = TokenInfo.getCustomUserId(request);
         User postUser = userService.getUser(postUserId);
         User receiveUser = comment.getReceiveUser();
 

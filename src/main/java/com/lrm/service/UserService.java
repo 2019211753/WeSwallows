@@ -3,6 +3,7 @@ package com.lrm.service;
 import com.lrm.po.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 山水夜止
@@ -17,7 +18,7 @@ public interface UserService {
 
     User checkUser(String username, String password);
 
-    User updateUser(User user);
+    User updateUser(User user, Map<String, Object> hashMap);
 
     User getUser(Long userId);
 

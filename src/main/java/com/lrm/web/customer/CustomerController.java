@@ -2,17 +2,13 @@ package com.lrm.web.customer;
 
 import com.lrm.po.User;
 import com.lrm.service.UserService;
-import com.lrm.util.FileUtils;
-import com.lrm.util.GetTokenInfo;
+import com.lrm.util.*;
 import com.lrm.vo.Magic;
 import com.lrm.vo.Result;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +40,7 @@ public class CustomerController {
         Map<String, Object> hashMap = new HashMap<>(2);
 
         User user = new User();
-        BeanUtils.copyProperties(userService.getUser(GetTokenInfo.getCustomUserId(request)), user);
+        BeanUtils.copyProperties(userService.getUser(TokenInfo.getCustomUserId(request)), user);
 
         //返回当前用户信息和院系选择
         hashMap.put("user", user);
@@ -66,7 +62,7 @@ public class CustomerController {
     public Result<Map<String, Object>> uploadAvatar(MultipartFile file, HttpServletRequest req) {
         Map<String, Object> hashMap = new HashMap<>(1);
 
-        Long userId = GetTokenInfo.getCustomUserId(req);
+        Long userId = TokenInfo.getCustomUserId(req);
 
         //创建存放文件的文件夹的流程
 
@@ -93,17 +89,74 @@ public class CustomerController {
     }
 
     /**
-     * 修改所有信息 封装成User返回
-     *
-     * @param user 旧用户对象
-     * @return user：新用户对象
+     * 修改发送过来的信息
+     * 最后检查昵称是否已经存在，存在的话就改其他的，返回前端昵称已存在。
+     * 最后检查密码是否符合格式规范。
      */
     @PostMapping("/modifyAll")
-    public Result<Map<String, Object>> modifyUserInformation(User user)
-    {
-        Map<String, Object> hashMap = new HashMap<>(1);
+    public Result<Map<String, Object>> modifyUserInformation(HttpServletRequest request, String nickName, String password, String email,
+                                                             String qqId, String wechatId, Boolean sex, String personalSignature, String academy,
+                                                             String major) {
+        Map<String, Object> hashMap = new HashMap<>(2);
 
-        hashMap.put("user", userService.updateUser(user));
+        StringBuilder errorMessage = null;
+
+        //获得当前用户Id 检查用户需要更改的昵称有没用其他用户在使用
+        Long customerUserId = TokenInfo.getCustomUserId(request);
+        User user0 = userService.getUser(nickName);
+
+        User user = new User();
+        user.setId(customerUserId);
+
+        //填进去
+        if (!"".equals(email) && email != null) {
+            user.setEmail(email);
+        }
+
+        if (!"".equals(qqId) && qqId != null) {
+            user.setQQId(qqId);
+        }
+
+        if (!"".equals(wechatId) && wechatId != null) {
+            user.setWechatId(wechatId);
+        }
+
+        user.setSex(sex);
+
+        if (!"".equals(personalSignature) && personalSignature != null) {
+            user.setPersonalSignature(personalSignature);
+        }
+
+        if (!"".equals(academy) && academy != null) {
+            user.setAcademy(academy);
+        }
+
+        if (!"".equals(major) && major != null) {
+            user.setMajor(major);
+        }
+
+        if (StringVerify.isContainChinese(password) && (password.length() > 12 || password.length() < 7)) {
+            user.setPassword("M#D5+" + MD5Utils.code(password));
+        } else {
+            errorMessage = new StringBuilder("密码格式错误；");
+        }
+
+        if (!(user0 != null && user0.getId().equals(customerUserId))) {
+            user.setNickname(nickName);
+            userService.updateUser(user, hashMap);
+        } else {
+            userService.updateUser(user, hashMap);
+
+            if (errorMessage == null) {
+                errorMessage = new StringBuilder("昵称已被占用；");
+            } else {
+                errorMessage.append("昵称已被占用");
+            }
+        }
+
+        if (errorMessage != null) {
+            return new Result<>(hashMap, true, errorMessage.append("其他信息修改成功；").toString());
+        }
 
         return new Result<>(hashMap, true, "修改成功");
     }

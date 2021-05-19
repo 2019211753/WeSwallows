@@ -3,13 +3,12 @@ package com.lrm.web.customer;
 import com.lrm.Exception.NoPermissionException;
 import com.lrm.Exception.NotFoundException;
 import com.lrm.po.Question;
-import com.lrm.po.Tag;
 import com.lrm.po.User;
 import com.lrm.service.QuestionService;
 import com.lrm.service.TagService;
 import com.lrm.service.UserService;
 import com.lrm.util.FileUtils;
-import com.lrm.util.GetTokenInfo;
+import com.lrm.util.TokenInfo;
 import com.lrm.vo.QuestionQuery;
 import com.lrm.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +54,7 @@ public class QuestionController {
         Map<String, Object> hashMap = new HashMap<>(1);
 
         //得到当前用户的昵称
-        String nickname = GetTokenInfo.getCustomNickname(request);
+        String nickname = TokenInfo.getCustomNickname(request);
 
         //这个方法只抽取title属性查询
         hashMap.put("pages", questionService.listQuestionPlusNickname(pageable, new QuestionQuery(), nickname));
@@ -78,7 +77,7 @@ public class QuestionController {
         Map<String, Object> hashMap = new HashMap<>(1);
 
         //得到当前用户的昵称
-        String nickname = GetTokenInfo.getCustomNickname(request);
+        String nickname = TokenInfo.getCustomNickname(request);
 
         hashMap.put("pages", questionService.listQuestionPlusNickname(pageable, question, nickname));
 
@@ -98,7 +97,7 @@ public class QuestionController {
     {
         Map<String, Object> hashMap = new HashMap<>(1);
 
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        Long userId = TokenInfo.getCustomUserId(request);
         User user = userService.getUser(userId);
 
         if (user.getCanSpeak()) {
@@ -143,8 +142,8 @@ public class QuestionController {
     public Result<Map<String, Object>> delete(@PathVariable Long questionId, HttpServletRequest request) {
         Map<String, Object> hashMap = new HashMap<>(1);
 
-        Long userId = GetTokenInfo.getCustomUserId(request);
-        Boolean admin = GetTokenInfo.isAdmin(request);
+        Long userId = TokenInfo.getCustomUserId(request);
+        Boolean admin = TokenInfo.isAdmin(request);
 
         Question question = questionService.getQuestion(questionId);
 
@@ -186,7 +185,7 @@ public class QuestionController {
         Map<String, Object> hashMap = new HashMap<>(files.length);
 
         //创建存放文件的文件夹的流程
-        Long userId = GetTokenInfo.getCustomUserId(req);
+        Long userId = TokenInfo.getCustomUserId(req);
         SimpleDateFormat sdf = new SimpleDateFormat("/yyyy-MM-dd/");
         String format = sdf.format(new Date());
         String path = "/upload/" + userId + "/questions/" + questionId + format;

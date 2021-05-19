@@ -1,10 +1,10 @@
 package com.lrm.service;
 
 import com.lrm.dao.UserRepository;
-import com.lrm.po.Tag;
 import com.lrm.po.User;
 import com.lrm.util.MD5Utils;
 import com.lrm.util.MyBeanUtils;
+import com.lrm.util.TokenInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -92,13 +93,16 @@ public class UserServiceImpl implements UserService
      */
     @Override
     @Transactional
-    public User updateUser(User user) {
-        //这个u和user虽然id相同，但是已经不是一个对象了！！！user里有新内容，但不包含 前端隐含域不包括的内容。u没有新内容，但是有全部的内容。
-        // 所以说要不要这么做 主要看前端有没有隐含域
+    public User updateUser(User user, Map<String, Object> hashMap) {
+        //这个u和user虽然id相同，但是已经不是一个对象了
         User u = getUser(user.getId());
         //user赋值给u
-        BeanUtils.copyProperties(user, u, MyBeanUtils.getNullPropertyNames(user));
-        return userRepository.save(user);
+        String[] str = MyBeanUtils.getNullPropertyNames(user);
+        BeanUtils.copyProperties(user, u, str);
+
+        hashMap.put("token", TokenInfo.postToken(u));
+
+        return userRepository.save(u);
     }
 
 

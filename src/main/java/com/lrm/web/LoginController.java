@@ -3,11 +3,13 @@ package com.lrm.web;
 import com.lrm.po.User;
 import com.lrm.service.UserService;
 import com.lrm.util.JWTUtils;
+import com.lrm.util.TokenInfo;
 import com.lrm.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,7 @@ import java.util.Map;
 /**
  * @author 山水夜止
  */
+@Validated
 @RestController
 public class LoginController {
     @Autowired
@@ -106,16 +109,7 @@ public class LoginController {
         User user1 = userService.checkUser(username, password);
         if(user1 != null)
         {
-            Map<String, String> map = new HashMap<>(5);
-
-            //把这些字段放在请求头里 其他东西在需要的时候可以另外返回
-            //注意！！！这里放进去map是什么数据类型，取出来就得是什么类型！！
-            map.put("userId", user1.getId().toString());
-            map.put("nickname", user1.getNickname());
-            map.put("avatar", user1.getAvatar());
-            map.put("admin", user1.getAdmin().toString());
-            map.put("canSpeak", user1.getCanSpeak().toString());
-            String token = JWTUtils.getToken(map);
+            String token = TokenInfo.postToken(user1);
 
             hashMap.put("token", token);
             //返回首页

@@ -60,6 +60,17 @@ public class User {
     private String password;
 
     /**
+     * 贡献值
+     */
+    private Integer donation;
+
+    /**
+     * 注册时间
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date registerTime;
+
+    /**
      * 用户头像 非必填 可以在前端显示默认值
      */
     private String avatar;
@@ -99,17 +110,6 @@ public class User {
      * 专业 非必填 可以在前端显示默认值
      */
     private String major;
-
-    /**
-     * 贡献值
-     */
-    private Integer donation;
-
-    /**
-     * 注册时间
-     */
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date registerTime;
 
 
     /**

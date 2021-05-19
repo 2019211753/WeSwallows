@@ -2,7 +2,7 @@ package com.lrm.web;
 
 import com.lrm.po.*;
 import com.lrm.service.*;
-import com.lrm.util.GetTokenInfo;
+import com.lrm.util.TokenInfo;
 import com.lrm.vo.Magic;
 import com.lrm.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class IndexController {
         Page<Question> page = questionService.listQuestion(pageable);
 
         //得到当前用户的userId
-        Long userId = GetTokenInfo.getCustomUserId(request);
+        Long userId = TokenInfo.getCustomUserId(request);
 
         for (Question question : page) {
 
@@ -135,7 +135,7 @@ public class IndexController {
      */
     @GetMapping("/question/{questionId}/approve")
     public void approve(@PathVariable Long questionId, HttpServletRequest request) {
-        Long postUserId = GetTokenInfo.getCustomUserId(request);
+        Long postUserId = TokenInfo.getCustomUserId(request);
 
         Question question = questionService.getQuestion(questionId);
 
@@ -180,7 +180,7 @@ public class IndexController {
      */
     @GetMapping("/question/{questionId}/disapprove")
     public void disapprove(@PathVariable Long questionId, HttpServletRequest request) {
-        Long postUserId = GetTokenInfo.getCustomUserId(request);
+        Long postUserId = TokenInfo.getCustomUserId(request);
 
         Question question = questionService.getQuestion(questionId);
 
