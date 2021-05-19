@@ -23,9 +23,6 @@ public class Result<T> {
 
     T data;
 
-    @JsonIgnore
-    Boolean isSuccess;
-
     Integer code;
 
     String msg;
@@ -55,7 +52,6 @@ public class Result<T> {
     public  static Result returnNoPermissionException(NoPermissionException noPermissionException, StringBuffer url){
         Result result = new Result();
         result.setData(null);
-        result.setSuccess(false);
         result.setMsg(noPermissionException.getErrorMsg());
         result.setUrl(url);
         result.setCode(403);
@@ -65,7 +61,6 @@ public class Result<T> {
     public  static Result returnNotFoundException(NotFoundException notFoundException, StringBuffer url){
         Result result = new Result();
         result.setData(null);
-        result.setSuccess(false);
         result.setMsg(notFoundException.getErrorMsg());
         result.setUrl(url);
         result.setCode(404);
@@ -75,7 +70,6 @@ public class Result<T> {
     public  static Result returnIOException(IOException ioException, StringBuffer url){
         Result result = new Result();
         result.setData(null);
-        result.setSuccess(false);
         result.setMsg("文件超过了1MB");
         result.setUrl(url);
         result.setCode(402);
@@ -85,7 +79,6 @@ public class Result<T> {
     public  static Result returnJWTException(JWTVerificationException jwtVerificationException, StringBuffer url){
         Result result = new Result();
         result.setData(null);
-        result.setSuccess(false);
         result.setMsg("用户令牌无效");
         result.setUrl(url);
         result.setCode(401);
@@ -96,7 +89,6 @@ public class Result<T> {
     public static Result returnNotDefinedError(StringBuffer url){
         Result result = new Result();
         result.setData(null);
-        result.setSuccess(false);
         result.setMsg("我也不知道发生甚么事了...");
         result.setUrl(url);
         result.setCode(400);
@@ -109,14 +101,6 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    public Boolean getSuccess() {
-        return isSuccess;
-    }
-
-    public void setSuccess(Boolean success) {
-        isSuccess = success;
     }
 
     public String getMsg() {
@@ -147,7 +131,6 @@ public class Result<T> {
     public String toString() {
         return "Result{" +
                 "data=" + data +
-                ", isSuccess=" + isSuccess +
                 ", code=" + code +
                 ", msg='" + msg + '\'' +
                 ", url=" + url +

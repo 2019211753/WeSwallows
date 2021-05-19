@@ -41,7 +41,7 @@ public class Tag {
      * 标签的子标签
      */
     @JsonManagedReference
-    @OneToMany(mappedBy = "parentTag")
+    @OneToMany(mappedBy = "parentTag", cascade = CascadeType.REMOVE)
     private List<Tag> sonTags = new ArrayList<>();
     /**
      * 标签的父标签
