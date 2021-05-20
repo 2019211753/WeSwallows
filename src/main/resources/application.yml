@@ -12,6 +12,7 @@ spring:
       ddl-auto: update
     show-sql: true
     open-in-view: true
+
   resources:
     #上传文件临时存放位置
     static-locations: classpath:/static/, file:${web.upload_path}
@@ -24,6 +25,9 @@ spring:
       max-file-size: 1MB
       #总数据的大小
       max-request-size: 10MB
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
 
 #文件上传路径
 web.upload_path: D:\springboot开发\雏雁项目\WeSwallows\src\main\resources\static\images

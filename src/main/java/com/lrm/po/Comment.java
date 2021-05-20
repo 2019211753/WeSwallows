@@ -155,7 +155,6 @@ public class Comment {
     @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Likes> likes;
 
-
     /**
      * 一comment对多dislikes
      */

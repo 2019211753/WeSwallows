@@ -37,6 +37,7 @@ public class CustomerController {
      */
     @GetMapping("/personal")
     public Result<Map<String, Object>> showMe(HttpServletRequest request) {
+        //这里返回的content里的base64编码可能耗内存 可以考虑优化 在后端存储图片路径
         Map<String, Object> hashMap = new HashMap<>(2);
 
         User user = new User();

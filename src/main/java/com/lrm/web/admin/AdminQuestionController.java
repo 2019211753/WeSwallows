@@ -45,10 +45,10 @@ public class AdminQuestionController {
      * @param pageable 分页对象
      * @param question 查询条件
      * @param nickname 查询的用户昵称
-     * @return 查询结果.
+     * @return 查询结果
      */
     @PostMapping("searchQuestions")
-    public Result<Map<String, Object>> searchQuestion(@PageableDefault(size = 6, sort = {"createTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public Result<Map<String, Object>> searchQuestion(@PageableDefault(size = 1000, sort = {"createTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                                                       QuestionQuery question, String nickname) {
         Map<String, Object> hashMap = new HashMap<>(1);
 

@@ -49,9 +49,10 @@ public class CommentServiceImpl implements CommentService {
         //得到当前评论对应的问题
         Question question = questionService.getQuestion(questionId);
 
-        //有父评论 则获得通知的人是父评论的发出者 否则为问题的发出者
-        if (parentCommentId != -1) {
+        boolean samePerson = false;
 
+        if (parentCommentId != -1) {
+            //有父评论 则是评论问题的评论
             Comment parentComment = getComment(parentCommentId);
             if (parentComment == null) {
                 throw new NotFoundException("该父评论不存在");
@@ -63,16 +64,32 @@ public class CommentServiceImpl implements CommentService {
             //初始化
             comment.setParentComment(parentComment);
             comment.setReceiveUser(parentComment.getPostUser());
-            //父评论是哪种 子评论就是哪种
+            //父评论是哪类评论 子评论就是哪类
             comment.setAnswer(parentComment.getAnswer());
 
+            //如果评论发布者也是上一级评论发布者 设为已读
+
+            if (comment.getPostUser().equals(parentComment.getPostUser())) {
+                samePerson = true;
+            }
         } else {
-            //在第一行comment.getParentComment中实际上new了一个parentComment对象(初始化id为-1了) 但id不能为-1 没有将p...持久化所以会报错 要设成null
+            //为评论问题的评论
+
+            //在第一行comment.getParentComment中实际上new了一个parentComment对象(初始化id为-1了)
+            //但id不能为-1 没有将p...持久化所以会报错 要设成null
             comment.setParentComment(null);
             comment.setReceiveUser(questionService.getQuestion(questionId).getUser());
+
+            //如果评论发布者为问题发布者 提供flag adminComment属性欸true 且设为已读
+            if (comment.getPostUser().equals(question.getUser())) {
+                samePerson = true;
+                comment.setAdminComment(true);
+            }
         }
 
-        //初始化
+        //如果发出评论的人是问题发布者或上一级评论发布者 设为已读
+        comment.setLooked(samePerson);
+
         //所属问题评论数增加 包含评论下的子评论了
         question.setCommentsNum(question.getCommentsNum() + 1);
         comment.setQuestion(question);
@@ -84,13 +101,6 @@ public class CommentServiceImpl implements CommentService {
         comment.setHidden(false);
         comment.setPostUserId0(postUser.getId());
         comment.setPostUser(postUser);
-
-        //判断发出评论的人是否是问题所有者
-        boolean admin = (postUser == question.getUser());
-
-        //如果是 初始化这两项
-        comment.setAdminComment(admin);
-        comment.setLooked(admin);
 
         //如果是有效回答 回答者贡献+3 问题影响力+2 否则仅仅问题影响力+2
         if (comment.getAnswer()) {
