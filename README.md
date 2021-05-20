@@ -167,11 +167,11 @@ GET http://localhost:8080/customer/messages
 
 ##### 已读某评论
 
-GET http://localhost:8080/customer/messages/{commentId}/read
+GET http://localhost:8080/customer/messages/comment/{commentId}/read
 
 ##### 已读某点赞
 
-GET http://localhost:8080/customer/messages/{likesId}/read
+GET http://localhost:8080/customer/messages/likes/{likesId}/read
 
 ##### 已读所有评论
 

@@ -71,7 +71,7 @@ public class MessageController {
      *
      * @param commentId 评论id
      */
-    @GetMapping("/{commentId}/read")
+    @GetMapping("/comment/{commentId}/read")
     public void readComment(@PathVariable Long commentId) {
         Comment comment = commentService.getComment(commentId);
         comment.setLooked(true);
@@ -83,7 +83,7 @@ public class MessageController {
      *
      * @param likesId 点赞id
      */
-    @GetMapping("/{likesId}/read")
+    @GetMapping("/likes/{likesId}/read")
     public void readLikes(@PathVariable Long likesId) {
         Likes likes = likesService.getLikes(likesId);
         likes.setLooked(true);
