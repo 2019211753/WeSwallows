@@ -80,26 +80,26 @@ public class CommentServiceImpl implements CommentService {
             comment.setParentComment(null);
             comment.setReceiveUser(questionService.getQuestion(questionId).getUser());
 
-            //如果评论发布者为问题发布者 提供flag adminComment属性欸true 且设为已读
+            //如果评论发布者为问题发布者 设为已读
             if (postUser.equals(question.getUser())) {
                 samePerson = true;
-                comment.setAdminComment(true);
             }
         }
 
         //如果发出评论的人是问题发布者或上一级评论发布者 设为已读
         comment.setLooked(samePerson);
-
+        //如果评论发布者为问题发布者 提供flag adminComment属性为true
+        comment.setAdminComment(postUser.equals(question.getUser()));
         //所属问题评论数增加 包含评论下的子评论了
         question.setCommentsNum(question.getCommentsNum() + 1);
         comment.setQuestion(question);
-        comment.setLooked(false);
         comment.setCreateTime(new Date());
         comment.setLikesNum(0);
         comment.setDisLikesNum(0);
         comment.setCommentsNum(0);
         comment.setHidden(false);
         comment.setPostUserId0(postUser.getId());
+        comment.setQuestionId0(questionId);
         comment.setPostUser(postUser);
 
         //如果是有效回答 回答者贡献+3 问题影响力+2 否则仅仅问题影响力+2

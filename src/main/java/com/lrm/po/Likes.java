@@ -40,6 +40,11 @@ public class Likes {
     private Long postUserId0;
 
     /**
+     * 返回question对象被json忽略 只能加个这个了
+     */
+    private Long questionId0;
+
+    /**
      * 封装成完整的"yyyy-MM-dd HH:mm:ss"的Date类型
      * 点赞时间
      */
@@ -125,6 +130,14 @@ public class Likes {
 
     public void setPostUserId0(Long postUserId0) {
         this.postUserId0 = postUserId0;
+    }
+
+    public Long getQuestionId0() {
+        return questionId0;
+    }
+
+    public void setQuestionId0(Long questionId0) {
+        this.questionId0 = questionId0;
     }
 
     public Date getCreateTime() {

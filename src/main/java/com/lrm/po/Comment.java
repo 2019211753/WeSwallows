@@ -65,6 +65,11 @@ public class Comment {
     private Long postUserId0;
 
     /**
+     * 返回question对象被json忽略 只能加个这个了
+     */
+    private Long questionId0;
+
+    /**
      * 前端传回comment 保存parentCommentId的媒介
      */
     private Long parentCommentId0;
@@ -291,6 +296,14 @@ public class Comment {
 
     public void setPostUserId0(Long postUserId0) {
         this.postUserId0 = postUserId0;
+    }
+
+    public Long getQuestionId0() {
+        return questionId0;
+    }
+
+    public void setQuestionId0(Long questionId0) {
+        this.questionId0 = questionId0;
     }
 
     public Long getParentCommentId0() {

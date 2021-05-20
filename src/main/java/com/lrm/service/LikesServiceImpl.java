@@ -34,12 +34,14 @@ public class LikesServiceImpl implements LikesService{
             if (likes.getComment().getPostUser().equals(likes.getPostUser())) {
                 likes.setLooked(true);
             }
+            likes.setQuestionId0(likes.getComment().getQuestionId0());
         }
 
         if (likes.getLikeQuestion()) {
             if (likes.getQuestion().getUser().equals(likes.getPostUser())) {
                 likes.setLooked(true);
             }
+            likes.setQuestionId0(likes.getQuestion().getId());
         }
         return likesRepository.save(likes);
     }
