@@ -69,7 +69,7 @@ public class CommentServiceImpl implements CommentService {
 
             //如果评论发布者也是上一级评论发布者 设为已读
 
-            if (comment.getPostUser().equals(parentComment.getPostUser())) {
+            if (postUser.equals(parentComment.getPostUser())) {
                 samePerson = true;
             }
         } else {
@@ -81,7 +81,7 @@ public class CommentServiceImpl implements CommentService {
             comment.setReceiveUser(questionService.getQuestion(questionId).getUser());
 
             //如果评论发布者为问题发布者 提供flag adminComment属性欸true 且设为已读
-            if (comment.getPostUser().equals(question.getUser())) {
+            if (postUser.equals(question.getUser())) {
                 samePerson = true;
                 comment.setAdminComment(true);
             }

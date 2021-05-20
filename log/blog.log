@@ -2685,3 +2685,209 @@ Caused by: org.hibernate.LazyInitializationException: failed to lazily initializ
 	... 67 common frames omitted
 
 2021-05-20 21:43:02.490  WARN 8956 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: failed to lazily initialize a collection of role: com.lrm.po.User.questions, could not initialize proxy - the owning Session was closed; nested exception is com.fasterxml.jackson.databind.JsonMappingException: failed to lazily initialize a collection of role: com.lrm.po.User.questions, could not initialize proxy - the owning Session was closed (through reference chain: com.lrm.vo.Result["data"]->java.util.HashMap["users"]->java.util.ArrayList[0]->com.lrm.po.User["questions"])]
+2021-05-20 21:49:08.738  INFO 18236 --- [restartedMain] com.lrm.Application                      : Starting Application on 山水夜止 with PID 18236 (started by Administrator in D:\springboot开发\雏雁项目\WeSwallows)
+2021-05-20 21:49:08.748 DEBUG 18236 --- [restartedMain] com.lrm.Application                      : Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2021-05-20 21:49:08.751  INFO 18236 --- [restartedMain] com.lrm.Application                      : No active profile set, falling back to default profiles: default
+2021-05-20 21:49:08.819  INFO 18236 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-05-20 21:49:08.819  INFO 18236 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-05-20 21:49:09.623  INFO 18236 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-05-20 21:49:09.712  INFO 18236 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83ms. Found 6 repository interfaces.
+2021-05-20 21:49:10.069  INFO 18236 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8f651eef] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-20 21:49:10.630  INFO 18236 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-20 21:49:10.641  INFO 18236 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-20 21:49:10.641  INFO 18236 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.12
+2021-05-20 21:49:10.646  INFO 18236 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Java\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\java\bin;D:\java\jre\bin;D:\Program Files\mysql-5.7.11-winx64\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;D:\;D:\Program Files\MATLAB\R2019b\bin;E:\Git\cmd;E:\bin;D:\IntelliJ IDEA 2020.2\apache-maven-3.3.9\bin;F:\TexLive\pdf2svg-windows-master\dist-64bits;C:\Users\Administrator\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\Administrator\AppData\Local\Programs\Python\Python38\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;D:\IntelliJ IDEA 2020.2\bin;;D:\PyCharm 2020.2\bin;;D:\WebStorm 2020.2\bin;;F:\TexLive\2020\bin\win32;;.]
+2021-05-20 21:49:10.789  INFO 18236 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-20 21:49:10.789  INFO 18236 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1969 ms
+2021-05-20 21:49:10.825  INFO 18236 --- [restartedMain] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2021-05-20 21:49:10.828  INFO 18236 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2021-05-20 21:49:10.828  INFO 18236 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2021-05-20 21:49:10.828  INFO 18236 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'formContentFilter' to: [/*]
+2021-05-20 21:49:10.828  INFO 18236 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2021-05-20 21:49:10.996  INFO 18236 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-20 21:49:11.084  INFO 18236 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-20 21:49:11.127  INFO 18236 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-05-20 21:49:11.173  INFO 18236 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2021-05-20 21:49:11.177  INFO 18236 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-05-20 21:49:11.303  INFO 18236 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-05-20 21:49:11.437  INFO 18236 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-05-20 21:49:12.264  INFO 18236 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-20 21:49:12.355  INFO 18236 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-20 21:49:12.855  INFO 18236 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2021-05-20 21:49:13.645  INFO 18236 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-20 21:49:14.318  INFO 18236 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-20 21:49:14.320  INFO 18236 --- [restartedMain] com.lrm.Application                      : Started Application in 6.246 seconds (JVM running for 7.838)
+2021-05-20 21:49:30.160  INFO 18236 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-20 21:49:30.161  INFO 18236 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-20 21:49:30.178  INFO 18236 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
+2021-05-20 21:49:37.923  INFO 18236 --- [http-nio-8080-exec-4] com.lrm.interceptor.JWTInterceptor       : RequestURL： /question/39 
+2021-05-20 21:49:37.924  INFO 18236 --- [http-nio-8080-exec-4] com.lrm.interceptor.JWTInterceptor       : GetMethod: public com.lrm.vo.Result<java.util.Map<java.lang.String, java.lang.Object>> com.lrm.web.IndexController.question(java.lang.Long)
+2021-05-20 21:49:37.924  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.interceptor.JWTInterceptor       : RequestURL： /question/39/comments 
+2021-05-20 21:49:37.924  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.interceptor.JWTInterceptor       : GetMethod: public com.lrm.vo.Result<java.util.Map<java.lang.String, java.lang.Object>> com.lrm.web.CommentController.comments(java.lang.Long,javax.servlet.http.HttpServletRequest)
+2021-05-20 21:49:38.268  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.aspect.LogAspect                 : Request: RequestLog{url='http://localhost:8080/question/39/comments', ip='0:0:0:0:0:0:0:1', classMethod='com.lrm.web.CommentController.comments', args=[39, org.apache.catalina.connector.RequestFacade@2cd22ed6]}
+2021-05-20 21:49:38.268  INFO 18236 --- [http-nio-8080-exec-4] com.lrm.aspect.LogAspect                 : Request: RequestLog{url='http://localhost:8080/question/39', ip='0:0:0:0:0:0:0:1', classMethod='com.lrm.web.IndexController.question', args=[39]}
+2021-05-20 21:49:38.312  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.aspect.LogAspect                 : ------doAfter-----
+2021-05-20 21:49:38.312  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.aspect.LogAspect                 : Result : Result{data={comments2=[], comments1=[]}, code=200, msg='', url=null}
+2021-05-20 21:49:38.404  INFO 18236 --- [http-nio-8080-exec-4] com.lrm.aspect.LogAspect                 : ------doAfter-----
+2021-05-20 21:49:38.405  INFO 18236 --- [http-nio-8080-exec-4] com.lrm.aspect.LogAspect                 : Result : Result{data={questions=com.lrm.po.Question@d0c6855f}, code=200, msg='', url=null}
+2021-05-20 21:49:38.439  INFO 18236 --- [http-nio-8080-exec-6] com.lrm.interceptor.JWTInterceptor       : RequestURL： /error 
+2021-05-20 21:49:38.439  INFO 18236 --- [http-nio-8080-exec-6] com.lrm.interceptor.JWTInterceptor       : GetMethod: public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-05-20 21:49:39.191  INFO 18236 --- [http-nio-8080-exec-7] com.lrm.interceptor.JWTInterceptor       : RequestURL： /error 
+2021-05-20 21:49:39.193  INFO 18236 --- [http-nio-8080-exec-7] com.lrm.interceptor.JWTInterceptor       : GetMethod: public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-05-20 21:49:42.195  INFO 18236 --- [http-nio-8080-exec-9] com.lrm.interceptor.JWTInterceptor       : RequestURL： /error 
+2021-05-20 21:49:42.196  INFO 18236 --- [http-nio-8080-exec-9] com.lrm.interceptor.JWTInterceptor       : GetMethod: public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-05-20 21:49:42.326  INFO 18236 --- [http-nio-8080-exec-10] com.lrm.interceptor.JWTInterceptor       : RequestURL： /question/39 
+2021-05-20 21:49:42.327  INFO 18236 --- [http-nio-8080-exec-10] com.lrm.interceptor.JWTInterceptor       : GetMethod: public com.lrm.vo.Result<java.util.Map<java.lang.String, java.lang.Object>> com.lrm.web.IndexController.question(java.lang.Long)
+2021-05-20 21:49:42.329  INFO 18236 --- [http-nio-8080-exec-1] com.lrm.interceptor.JWTInterceptor       : RequestURL： /question/39/comments 
+2021-05-20 21:49:42.329  INFO 18236 --- [http-nio-8080-exec-1] com.lrm.interceptor.JWTInterceptor       : GetMethod: public com.lrm.vo.Result<java.util.Map<java.lang.String, java.lang.Object>> com.lrm.web.CommentController.comments(java.lang.Long,javax.servlet.http.HttpServletRequest)
+2021-05-20 21:49:42.330  INFO 18236 --- [http-nio-8080-exec-10] com.lrm.aspect.LogAspect                 : Request: RequestLog{url='http://localhost:8080/question/39', ip='0:0:0:0:0:0:0:1', classMethod='com.lrm.web.IndexController.question', args=[39]}
+2021-05-20 21:49:42.332  INFO 18236 --- [http-nio-8080-exec-1] com.lrm.aspect.LogAspect                 : Request: RequestLog{url='http://localhost:8080/question/39/comments', ip='0:0:0:0:0:0:0:1', classMethod='com.lrm.web.CommentController.comments', args=[39, org.apache.catalina.connector.RequestFacade@2cd22ed6]}
+2021-05-20 21:49:42.347  INFO 18236 --- [http-nio-8080-exec-1] com.lrm.aspect.LogAspect                 : ------doAfter-----
+2021-05-20 21:49:42.348  INFO 18236 --- [http-nio-8080-exec-1] com.lrm.aspect.LogAspect                 : Result : Result{data={comments2=[], comments1=[]}, code=200, msg='', url=null}
+2021-05-20 21:49:42.349  INFO 18236 --- [http-nio-8080-exec-10] com.lrm.aspect.LogAspect                 : ------doAfter-----
+2021-05-20 21:49:42.350  INFO 18236 --- [http-nio-8080-exec-10] com.lrm.aspect.LogAspect                 : Result : Result{data={questions=com.lrm.po.Question@b1f9ee39}, code=200, msg='', url=null}
+2021-05-20 21:49:42.380  INFO 18236 --- [http-nio-8080-exec-2] com.lrm.interceptor.JWTInterceptor       : RequestURL： /error 
+2021-05-20 21:49:42.381  INFO 18236 --- [http-nio-8080-exec-2] com.lrm.interceptor.JWTInterceptor       : GetMethod: public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-05-20 21:50:03.363  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.interceptor.JWTInterceptor       : RequestURL： /question/39/comment 
+2021-05-20 21:50:03.364  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.interceptor.JWTInterceptor       : GetMethod: public com.lrm.vo.Result<java.util.Map<java.lang.String, java.lang.Object>> com.lrm.web.CommentController.post(com.lrm.po.Comment,javax.servlet.http.HttpServletRequest,org.springframework.validation.BindingResult) throws com.lrm.Exception.NotFoundException
+2021-05-20 21:50:03.419  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.aspect.LogAspect                 : Request: RequestLog{url='http://localhost:8080/question/39/comment', ip='0:0:0:0:0:0:0:1', classMethod='com.lrm.web.CommentController.post', args=[com.lrm.po.Comment@56d4b617, org.apache.catalina.connector.RequestFacade@30352b8b, org.springframework.validation.BeanPropertyBindingResult: 0 errors]}
+2021-05-20 21:50:03.427  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.aspect.LogAspect                 : ------doAfter-----
+2021-05-20 21:50:03.427  INFO 18236 --- [http-nio-8080-exec-5] com.lrm.aspect.LogAspect                 : Exception : post方法抛异常了，null
+2021-05-20 21:50:03.432 ERROR 18236 --- [http-nio-8080-exec-5] c.l.handler.ControllerExceptionHandler   : Request URL: http://localhost:8080/question/39/comment, Exception : {}
+
+java.lang.NullPointerException: null
+	at com.lrm.service.CommentServiceImpl.saveComment(CommentServiceImpl.java:84) ~[classes/:na]
+	at com.lrm.service.CommentServiceImpl$$FastClassBySpringCGLIB$$1c343.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:746) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:294) ~[spring-tx-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at com.lrm.service.CommentServiceImpl$$EnhancerBySpringCGLIB$$543188fb.saveComment(<generated>) ~[classes/:na]
+	at com.lrm.web.CommentController.post(CommentController.java:150) ~[classes/:na]
+	at com.lrm.web.CommentController$$FastClassBySpringCGLIB$$1bb89ed.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:746) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:56) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.aspectj.AspectJAfterAdvice.invoke(AspectJAfterAdvice.java:47) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:55) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.aspectj.AspectJAfterThrowingAdvice.invoke(AspectJAfterThrowingAdvice.java:62) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688) ~[spring-aop-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at com.lrm.web.CommentController$$EnhancerBySpringCGLIB$$9c2cefc0.post(<generated>) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_212]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_212]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_212]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_212]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:215) ~[spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:142) ~[spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102) ~[spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800) ~[spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038) ~[spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942) ~[spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:998) [spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:901) [spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:875) [spring-webmvc-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) [spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92) [spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93) [spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200) [spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) [spring-web-5.1.2.RELEASE.jar:5.1.2.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:770) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_212]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_212]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.12.jar:9.0.12]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_212]
+
+2021-05-20 21:50:03.434  WARN 18236 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException]
+2021-05-20 21:50:04.659  INFO 18236 --- [http-nio-8080-exec-6] com.lrm.interceptor.JWTInterceptor       : RequestURL： /question/39 
+2021-05-20 21:50:04.660  INFO 18236 --- [http-nio-8080-exec-6] com.lrm.interceptor.JWTInterceptor       : GetMethod: public com.lrm.vo.Result<java.util.Map<java.lang.String, java.lang.Object>> com.lrm.web.IndexController.question(java.lang.Long)
+2021-05-20 21:50:04.660  INFO 18236 --- [http-nio-8080-exec-7] com.lrm.interceptor.JWTInterceptor       : RequestURL： /question/39/comments 
+2021-05-20 21:50:04.661  INFO 18236 --- [http-nio-8080-exec-7] com.lrm.interceptor.JWTInterceptor       : GetMethod: public com.lrm.vo.Result<java.util.Map<java.lang.String, java.lang.Object>> com.lrm.web.CommentController.comments(java.lang.Long,javax.servlet.http.HttpServletRequest)
+2021-05-20 21:50:04.662  INFO 18236 --- [http-nio-8080-exec-6] com.lrm.aspect.LogAspect                 : Request: RequestLog{url='http://localhost:8080/question/39', ip='0:0:0:0:0:0:0:1', classMethod='com.lrm.web.IndexController.question', args=[39]}
+2021-05-20 21:50:04.662  INFO 18236 --- [http-nio-8080-exec-7] com.lrm.aspect.LogAspect                 : Request: RequestLog{url='http://localhost:8080/question/39/comments', ip='0:0:0:0:0:0:0:1', classMethod='com.lrm.web.CommentController.comments', args=[39, org.apache.catalina.connector.RequestFacade@4794ad]}
+2021-05-20 21:50:04.668  INFO 18236 --- [http-nio-8080-exec-7] com.lrm.aspect.LogAspect                 : ------doAfter-----
+2021-05-20 21:50:04.668  INFO 18236 --- [http-nio-8080-exec-7] com.lrm.aspect.LogAspect                 : Result : Result{data={comments2=[], comments1=[]}, code=200, msg='', url=null}
+2021-05-20 21:50:04.677  INFO 18236 --- [http-nio-8080-exec-6] com.lrm.aspect.LogAspect                 : ------doAfter-----
+2021-05-20 21:50:04.677  INFO 18236 --- [http-nio-8080-exec-6] com.lrm.aspect.LogAspect                 : Result : Result{data={questions=com.lrm.po.Question@acaa38b9}, code=200, msg='', url=null}
+2021-05-20 21:50:04.698  INFO 18236 --- [http-nio-8080-exec-9] com.lrm.interceptor.JWTInterceptor       : RequestURL： /error 
+2021-05-20 21:50:04.699  INFO 18236 --- [http-nio-8080-exec-9] com.lrm.interceptor.JWTInterceptor       : GetMethod: public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2021-05-20 21:50:22.636  INFO 20752 --- [restartedMain] com.lrm.Application                      : Starting Application on 山水夜止 with PID 20752 (started by Administrator in D:\springboot开发\雏雁项目\WeSwallows)
+2021-05-20 21:50:22.642 DEBUG 20752 --- [restartedMain] com.lrm.Application                      : Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2021-05-20 21:50:22.650  INFO 20752 --- [restartedMain] com.lrm.Application                      : No active profile set, falling back to default profiles: default
+2021-05-20 21:50:22.748  INFO 20752 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-05-20 21:50:22.748  INFO 20752 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-05-20 21:50:24.109  INFO 20752 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-05-20 21:50:24.234  INFO 20752 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117ms. Found 6 repository interfaces.
+2021-05-20 21:50:24.997  INFO 20752 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$75ce33a4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-20 21:50:25.909  INFO 20752 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-20 21:50:25.930  INFO 20752 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-20 21:50:25.931  INFO 20752 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.12
+2021-05-20 21:50:25.997  INFO 20752 --- [restartedMain] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\Java\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\java\bin;D:\java\jre\bin;D:\Program Files\mysql-5.7.11-winx64\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;D:\;D:\Program Files\MATLAB\R2019b\bin;E:\Git\cmd;E:\bin;D:\IntelliJ IDEA 2020.2\apache-maven-3.3.9\bin;F:\TexLive\pdf2svg-windows-master\dist-64bits;C:\Users\Administrator\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\Administrator\AppData\Local\Programs\Python\Python38\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;D:\IntelliJ IDEA 2020.2\bin;;D:\PyCharm 2020.2\bin;;D:\WebStorm 2020.2\bin;;F:\TexLive\2020\bin\win32;;.]
+2021-05-20 21:50:26.085  INFO 20752 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-20 21:50:26.085  INFO 20752 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3337 ms
+2021-05-20 21:50:26.124  INFO 20752 --- [restartedMain] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2021-05-20 21:50:26.128  INFO 20752 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2021-05-20 21:50:26.128  INFO 20752 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2021-05-20 21:50:26.129  INFO 20752 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'formContentFilter' to: [/*]
+2021-05-20 21:50:26.129  INFO 20752 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2021-05-20 21:50:26.280  INFO 20752 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-05-20 21:50:26.388  INFO 20752 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-05-20 21:50:26.441  INFO 20752 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-05-20 21:50:26.509  INFO 20752 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2021-05-20 21:50:26.511  INFO 20752 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2021-05-20 21:50:26.644  INFO 20752 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2021-05-20 21:50:26.796  INFO 20752 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-05-20 21:50:27.817  INFO 20752 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-20 21:50:27.909  INFO 20752 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-20 21:50:28.459  INFO 20752 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2021-05-20 21:50:29.689  INFO 20752 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-20 21:50:30.186  INFO 20752 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-20 21:50:30.188  INFO 20752 --- [restartedMain] com.lrm.Application                      : Started Application in 8.361 seconds (JVM running for 10.041)
+2021-05-20 21:51:23.888  INFO 20752 --- [Thread-23] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-20 21:51:23.890  INFO 20752 --- [Thread-23] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-20 21:51:23.897  INFO 20752 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-05-20 21:51:23.903  INFO 20752 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
