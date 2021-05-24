@@ -2,8 +2,9 @@ spring:
   #数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    #改成你本地的数据库名
     url: jdbc:mysql://localhost:3306/Swallows?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    #本地数据库账号密码
+    #改成你本地的数据库账号密码
     username: root
     password: 123
   #jpa配置
@@ -29,7 +30,7 @@ spring:
     serialization:
       FAIL_ON_EMPTY_BEANS: false
 
-#文件上传路径
+#改成你本地的文件上传路径
 web.upload_path: D:\springboot开发\雏雁项目\WeSwallows\src\main\resources\static\images
 
 

@@ -136,10 +136,12 @@ public class CustomerController {
             user.setMajor(major);
         }
 
-        if (StringVerify.isContainChinese(password) && (password.length() > 12 || password.length() < 7)) {
-            user.setPassword("M#D5+" + MD5Utils.code(password));
-        } else {
-            errorMessage = new StringBuilder("密码格式错误；");
+        if (!"".equals(password) && password != null) {
+            if (StringVerify.isContainChinese(password) && (password.length() > 12 || password.length() < 7)) {
+                user.setPassword("M#D5+" + MD5Utils.code(password));
+            } else {
+                errorMessage = new StringBuilder("密码格式错误；");
+            }
         }
 
         if (!(user0 != null && user0.getId().equals(customerUserId))) {

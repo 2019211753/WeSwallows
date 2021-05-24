@@ -42,6 +42,6 @@ public class UserController {
     {
         User user = userService.getUser(userId);
         user.setCanSpeak(!user.getCanSpeak());
-        userService.getUser(userId);
+        userService.saveUser(user);
     }
 }

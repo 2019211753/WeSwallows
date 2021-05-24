@@ -215,15 +215,6 @@ public class User {
         this.qqId = qqId;
     }
 
-
-    public String getQqId() {
-        return qqId;
-    }
-
-    public void setQqId(String qqId) {
-        this.qqId = qqId;
-    }
-
     public String getWechatId() {
         return wechatId;
     }
