@@ -2,6 +2,7 @@ package com.lrm.interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
@@ -51,6 +52,15 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/signin.html");
         registry.addInterceptor(new AuthorityInterceptor())
                 .addPathPatterns("/admin/**");
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//    告知系统static 当成 静态资源访问
+
+        String path = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images\\";
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/images/**").addResourceLocations("file:" + path);
     }
 
 }
