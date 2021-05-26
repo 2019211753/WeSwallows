@@ -75,7 +75,7 @@ public class IndexController {
         }
         hashMap.put("pages", page);
         hashMap.put("impactQuestions", questionService.listImpactQuestionTop(Magic.RECOMMENDED_QUESTIONS_SIZE));
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**
@@ -104,7 +104,7 @@ public class IndexController {
 
         //还要传回 保证在新的查询页面 查询框中也有自己之前查询的条件的内容
         hashMap.put("queries", query);
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**
@@ -124,7 +124,7 @@ public class IndexController {
         question.setNickname(question.getUser().getNickname());
 
         hashMap.put("questions", question);
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**

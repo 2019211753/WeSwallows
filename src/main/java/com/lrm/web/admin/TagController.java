@@ -1,5 +1,6 @@
 package com.lrm.web.admin;
 
+import com.lrm.Exception.NormalException;
 import com.lrm.Exception.NotFoundException;
 import com.lrm.po.Tag;
 import com.lrm.service.TagService;
@@ -30,7 +31,7 @@ public class TagController {
 
         hashMap.put("tags", tagService.listTagTop());
 
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**
@@ -44,14 +45,14 @@ public class TagController {
 
         //返回input页面的错误提示
         if (result.hasErrors()) {
-            return new Result<>(hashMap, false, "标签名不能为空");
+            throw new NormalException("标签名不能为空");
         }
 
         //检查是否存在同名标签 注意不区分大小写
         Tag tag0 = tagService.getTagByName(tag.getName());
         if (tag0 != null) {
             hashMap.put("tags", tag);
-            return new Result<>(hashMap, false, "不能添加重复的标签");
+            throw new NormalException("不能添加重复的标签");
         }
 
         //检查是标签新增还是修改
@@ -59,18 +60,18 @@ public class TagController {
         if (tag.getId() == null) {
             Tag t = tagService.saveTag(tag);
             if (t == null) {
-                return new Result<>(hashMap, false, "新增失败");
+                throw new NormalException("新增失败");
             } else {
-                return new Result<>(hashMap, true, "新增成功");
+                return new Result<>(hashMap, "新增成功");
             }
         }
 
         //如果是修改
         Tag t = tagService.updateTag(tag);
         if (t == null) {
-            return new Result<>(hashMap, false, "修改失败");
+            throw new NormalException("修改失败");
         } else {
-            return new Result<>(hashMap, true, "修改成功");
+            return new Result<>(hashMap, "修改成功");
         }
     }
 
@@ -94,9 +95,9 @@ public class TagController {
         if (tag != null)
         {
             hashMap.put("tags", tag);
-            return new Result<>(hashMap, false, "删除失败");
+            throw new NormalException("删除失败");
         } else {
-            return new Result<>(null, true, "删除成功");
+            return new Result<>(null, "删除成功");
         }
     }
 

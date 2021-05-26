@@ -1,5 +1,6 @@
 package com.lrm.web;
 
+import com.lrm.Exception.NormalException;
 import com.lrm.po.User;
 import com.lrm.service.UserService;
 import com.lrm.util.JWTUtils;
@@ -36,22 +37,8 @@ public class LoginController {
      * @return 返回注册成功得到的User对象 需要确定泛型，否则操作无效了; 返回注册失败的报错信息
      */
     @PostMapping("/register")
-    public Result<Map<String, Object>> register(@Valid User user, BindingResult result)
-    {
+    public Result<Map<String, Object>> register(@Valid User user) {
         Map<String, Object> hashMap = new HashMap<>(1);
-
-        //校验
-        if(result.hasErrors())
-        {
-            List<FieldError> errors = result.getFieldErrors();
-            StringBuilder buffer = new StringBuilder(64);
-            for (ObjectError error : errors)
-            {
-                buffer.append(error.getDefaultMessage()).append("；");
-            }
-
-            return new Result<>(null, false, new String(buffer));
-        }
 
         String username = user.getUsername();
         String password = user.getPassword();
@@ -59,10 +46,10 @@ public class LoginController {
 
         //先检查是否已经注册过。注册过报错；没注册过注册，注册成功跳转到登录。
         User user1 = userService.checkRegister(username, nickname);
-        if(user1 != null)
+        if (user1 != null)
         {
             //跳转到注册页面
-            return new Result<>(null, false, "该账号或昵称已被注册过");
+            throw new NormalException("该账号或昵称已被注册过");
         } else {
 
             userService.saveUser(username, password, nickname);
@@ -74,7 +61,7 @@ public class LoginController {
             hashMap.put("user", user);
 
             //跳转到登录页面
-            return new Result<>(hashMap, true, "注册成功");
+            return new Result<>(hashMap, "注册成功");
         }
     }
 
@@ -94,7 +81,7 @@ public class LoginController {
         StringBuilder errorMsg = new StringBuilder(64);
         if (username == null & password != null) {
             errorMsg.append("请输入账号；");
-            return new Result<>(null, false, new String(errorMsg));
+            throw new NormalException(new String(errorMsg));
 
         } else if (username == null & password == null) {
             errorMsg.append("请输入账号；");
@@ -102,7 +89,7 @@ public class LoginController {
         if (password == null)
         {
             errorMsg.append("请输入密码；");
-            return new Result<>(null, false, new String(errorMsg));
+            throw new NormalException(new String(errorMsg));
         }
 
         //检查账号和密码在数据库中存在不。(不考虑是否注册过了)。存在登录；不存在报错。
@@ -113,10 +100,10 @@ public class LoginController {
 
             hashMap.put("token", token);
             //返回首页
-            return new Result<>(hashMap, true, "登录成功");
+            return new Result<>(hashMap, "登录成功");
         } else {
             //返回登录页面
-            return new Result<>(null, false, "账号或密码错误");
+            throw new NormalException("账号或密码错误");
         }
     }
 }

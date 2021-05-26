@@ -1,6 +1,7 @@
 package com.lrm.web;
 
 import com.lrm.Exception.NoPermissionException;
+import com.lrm.Exception.NormalException;
 import com.lrm.Exception.NotFoundException;
 import com.lrm.po.*;
 import com.lrm.service.*;
@@ -67,7 +68,7 @@ public class CommentController
 
         hashMap.put("comments2", dealComment(comments2, userId));
 
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**
@@ -130,7 +131,7 @@ public class CommentController
      * @return 新增的评论或新增失败报错
      */
     @PostMapping("/comment")
-    public Result<Map<String, Object>> post(@Valid Comment comment, HttpServletRequest request, BindingResult bindingResult) throws NotFoundException {
+    public Result<Map<String, Object>> post(@Valid Comment comment, HttpServletRequest request, BindingResult bindingResult) throws NotFoundException, NoPermissionException {
         Map<String, Object> hashMap = new HashMap<>(1);
 
         //得到当前用户
@@ -143,7 +144,7 @@ public class CommentController
             //如果是空 报错
             if (bindingResult.hasErrors()) {
                 hashMap.put("comments", comment);
-                return new Result<>(hashMap, false, "内容不能为空");
+                throw new NormalException("内容不能为空");
             }
 
             //保存
@@ -158,12 +159,12 @@ public class CommentController
 
                 hashMap.put("comments", comment);
 
-                return new Result<>(hashMap, true, "发布成功");
+                return new Result<>(hashMap, "发布成功");
             } else {
-                return new Result<>(null, false, "发布失败");
+                throw new NormalException("发布失败");
             }
         } else {
-            return new Result<>(null, false, "您无权限发布评论");
+            throw new NoPermissionException("您无权限发布评论");
         }
     }
 
@@ -204,9 +205,9 @@ public class CommentController
 
         if (comment != null) {
             hashMap.put("comments", comment);
-            return new Result<>(hashMap, false, "删除失败");
+            throw new NormalException("删除失败");
         } else {
-            return new Result<>(null, true, "删除成功");
+            return new Result<>(null, "删除成功");
         }
     }
 
@@ -353,7 +354,7 @@ public class CommentController
             String newName = FileUtils.upload(file, realPath, oldName);
 
             if (newName == null) {
-                return new Result<>(hashMap, false, "上传失败");
+                throw new NormalException("上传失败");
             }
 
             pathList.add("images/" + suffixPath + "/" + newName);
@@ -361,7 +362,7 @@ public class CommentController
         }
 
         hashMap.put("photos", pathList);
-        return new Result<>(hashMap, true, "上传成功");
+        return new Result<>(hashMap, "上传成功");
     }
 
     /**

@@ -36,6 +36,6 @@ public class ArchiveShowController {
         hashMap.put("archiveMap", questionService.archivesQuestion(userId));
         hashMap.put("QuestionCount", questionService.countQuestionByUser(userId));
 
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 }

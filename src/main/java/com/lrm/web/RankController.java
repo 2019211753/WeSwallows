@@ -45,6 +45,6 @@ public class RankController {
         }
         hashMap.put("users", newUsers);
 
-        return new Result<>(hashMap, true, null);
+        return new Result<>(hashMap, null);
     }
 }

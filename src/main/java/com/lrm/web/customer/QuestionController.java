@@ -1,6 +1,7 @@
 package com.lrm.web.customer;
 
 import com.lrm.Exception.NoPermissionException;
+import com.lrm.Exception.NormalException;
 import com.lrm.Exception.NotFoundException;
 import com.lrm.po.Question;
 import com.lrm.po.User;
@@ -59,7 +60,7 @@ public class QuestionController {
         //这个方法只抽取title属性查询
         hashMap.put("pages", questionService.listQuestionPlusNickname(pageable, new QuestionQuery(), nickname));
 
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**
@@ -81,7 +82,7 @@ public class QuestionController {
 
         hashMap.put("pages", questionService.listQuestionPlusNickname(pageable, question, nickname));
 
-        return new Result<>(hashMap, true, "搜索完成");
+        return new Result<>(hashMap, "搜索完成");
     }
 
     /**
@@ -104,7 +105,7 @@ public class QuestionController {
             //后端检验valid 如果校验失败 返回input页面
             if (bindingResult.hasErrors()) {
                 hashMap.put("questions", question);
-                return new Result<>(hashMap, false, "标题、内容、概述均不能为空");
+                throw new NormalException("标题、内容、概述均不能为空");
             }
 
             question.setUser(user);
@@ -117,17 +118,17 @@ public class QuestionController {
                 q = questionService.saveQuestion(question, user);
             } else {
                 hashMap.put("questions", question);
-                return new Result<>(hashMap, false, "该问题已存在");
+                throw new NormalException("该问题已存在");
             }
 
             if (q != null) {
                 hashMap.put("questions", question);
-                return new Result<>(hashMap, true, "发布成功");
+                return new Result<>(hashMap, "发布成功");
             } else {
-                return new Result<>(null, false, "发布失败");
+                throw new NormalException("发布失败");
             }
         } else {
-            return new Result<>(null, false, "您无权限发布问题");
+            throw new NoPermissionException("您无权限发布问题");
         }
 
     }
@@ -165,9 +166,9 @@ public class QuestionController {
         question = questionService.getQuestion(questionId);
         if (question != null) {
             hashMap.put("questions", question);
-            return new Result<>(hashMap, false, "删除失败");
+            throw new NormalException("删除失败");
         } else {
-            return new Result<>(null, true, "删除成功");
+            return new Result<>(null, "删除成功");
         }
     }
 
@@ -218,7 +219,7 @@ public class QuestionController {
         }
 
         hashMap.put("photos", pathList);
-        return new Result<>(hashMap, true, "上传成功");
+        return new Result<>(hashMap, "上传成功");
     }
 
 }

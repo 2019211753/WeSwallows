@@ -1,5 +1,6 @@
 package com.lrm.web.customer;
 
+import com.lrm.Exception.NormalException;
 import com.lrm.po.User;
 import com.lrm.service.UserService;
 import com.lrm.util.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +49,7 @@ public class CustomerController {
         hashMap.put("user", user);
         hashMap.put("ACADEMIES", Magic.ACADEMIES);
 
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     //下面两个资料修改最好分开
@@ -60,7 +62,7 @@ public class CustomerController {
      * @return avatar 文件在服务器端的路径
      */
     @PostMapping("/uploadAvatar")
-    public Result<Map<String, Object>> uploadAvatar(MultipartFile file, HttpServletRequest req) {
+    public Result<Map<String, Object>> uploadAvatar(MultipartFile file, HttpServletRequest req) throws IOException {
         Map<String, Object> hashMap = new HashMap<>(1);
 
         Long userId = TokenInfo.getCustomUserId(req);
@@ -83,9 +85,9 @@ public class CustomerController {
 
             userService.saveUser(user);
 
-            return new Result<>(hashMap, true, "上传成功");
+            return new Result<>(hashMap, "上传成功");
         } else {
-            return new Result<>(hashMap, false, "上传失败");
+            throw new NormalException("文件过大，上传失败");
         }
     }
 
@@ -95,7 +97,7 @@ public class CustomerController {
      * 最后检查密码是否符合格式规范。
      */
     @PostMapping("/modifyAll")
-    public Result<Map<String, Object>> modifyUserInformation(HttpServletRequest request, String nickName, String password, String email,
+    public Result<Map<String, Object>> modifyUserInformation(HttpServletRequest request, String nickname, String password, String email,
                                                              String qqId, String wechatId, Boolean sex, String personalSignature, String academy,
                                                              String major) {
         Map<String, Object> hashMap = new HashMap<>(2);
@@ -104,7 +106,7 @@ public class CustomerController {
 
         //获得当前用户Id 检查用户需要更改的昵称有没用其他用户在使用
         Long customerUserId = TokenInfo.getCustomUserId(request);
-        User user0 = userService.getUser(nickName);
+        User user0 = userService.getUser(nickname);
 
         User user = new User();
         user.setId(customerUserId);
@@ -145,7 +147,7 @@ public class CustomerController {
         }
 
         if (!(user0 != null && user0.getId().equals(customerUserId))) {
-            user.setNickname(nickName);
+            user.setNickname(nickname);
             userService.updateUser(user, hashMap);
         } else {
             userService.updateUser(user, hashMap);
@@ -153,15 +155,15 @@ public class CustomerController {
             if (errorMessage == null) {
                 errorMessage = new StringBuilder("昵称已被占用；");
             } else {
-                errorMessage.append("昵称已被占用");
+                errorMessage.append("昵称已被占用；");
             }
         }
 
         if (errorMessage != null) {
-            return new Result<>(hashMap, true, errorMessage.append("其他信息修改成功；").toString());
+            throw new NormalException(errorMessage.append("其他信息修改成功；").toString());
         }
 
-        return new Result<>(hashMap, true, "修改成功");
+        return new Result<>(hashMap, "修改成功");
     }
 
 

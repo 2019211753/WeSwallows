@@ -36,7 +36,7 @@ public class TagShowController {
 
         hashMap.put("tags", tagService.listTagTop());
 
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**
@@ -69,6 +69,6 @@ public class TagShowController {
         //将set转换为list
         hashMap.put("pages", DividePage.listConvertToPage(new ArrayList<>(questions), pageRequest));
 
-        return new Result<>(hashMap, true, "搜索成功");
+        return new Result<>(hashMap, "搜索成功");
     }
 }

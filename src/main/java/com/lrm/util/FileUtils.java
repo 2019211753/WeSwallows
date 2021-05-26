@@ -47,22 +47,15 @@ public class FileUtils {
      * @param fileName 原文件名
      * @return 新文件名/null
      */
-    public static String upload(MultipartFile file, String path, String fileName) {
+    public static String upload(MultipartFile file, String path, String fileName) throws IOException {
 
         // 生成新的文件和目录名
         String newFileName = getFileName(fileName);
 
         String realPath = path + "/" + newFileName;
         File folder = new File(realPath);
-
-        try {
-            //保存文件
-            file.transferTo(folder);
-            return newFileName;
-        } catch (IOException e) {
-            return null;
-        }
-
+        file.transferTo(folder);
+        return newFileName;
     }
 
     /**

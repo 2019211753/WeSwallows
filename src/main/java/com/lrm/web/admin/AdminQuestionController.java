@@ -1,5 +1,6 @@
 package com.lrm.web.admin;
 
+import com.lrm.Exception.NormalException;
 import com.lrm.Exception.NotFoundException;
 import com.lrm.po.Question;
 import com.lrm.po.Tag;
@@ -53,7 +54,7 @@ public class AdminQuestionController {
         //后端检验valid
         if (bindingResult.hasErrors()) {
             hashMap.put("questions", question);
-            return new Result<>(hashMap, false, "标题、内容、概述均不能为空");
+            throw new NormalException("标题、内容、概述均不能为空");
         }
 
         //令前端只传回tagIds而不是tag对象 将它转换为List<Tag> 在service层找到对应的Tag保存到数据库
@@ -67,10 +68,10 @@ public class AdminQuestionController {
         }
 
         if (q == null) {
-            return new Result<>(null, false, "修改失败");
+            throw new NormalException("修改失败");
         } else {
             hashMap.put("questions", question);
-            return new Result<>(hashMap, true, "修改成功");
+            return new Result<>(hashMap, "修改成功");
         }
     }
 
@@ -90,7 +91,7 @@ public class AdminQuestionController {
         hashMap.put("questions", question);
         hashMap.put("tags", tags);
 
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**
@@ -129,7 +130,7 @@ public class AdminQuestionController {
             q.setAvatar(postUser.getAvatar());
             q.setNickname(postUser.getNickname());
         }
-        return new Result<>(hashMap, true, "搜索完成");
+        return new Result<>(hashMap, "搜索完成");
     }
 
 

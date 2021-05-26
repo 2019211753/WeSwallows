@@ -63,7 +63,7 @@ public class MessageController {
         hashMap.put("Comments", comments);
         hashMap.put("Likes", likes);
 
-        return new Result<>(hashMap, true, "");
+        return new Result<>(hashMap, "");
     }
 
     /**

@@ -29,7 +29,7 @@ public class UserController {
 
         hashMap.put("user", userService.getUser(nickname));
 
-        return new Result<>(hashMap, true, "搜索完成");
+        return new Result<>(hashMap, "搜索完成");
     }
 
     /**
