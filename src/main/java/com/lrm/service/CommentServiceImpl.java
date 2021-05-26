@@ -244,7 +244,7 @@ public class CommentServiceImpl implements CommentService {
      */
     @Override
     public List<Comment> listAllNotReadComment(Long userId) {
-        return commentRepository.findByReceiveUserIdAndLooked(userId, false);
+        return commentRepository.findByReceiveUserId(userId);
     }
 
 }

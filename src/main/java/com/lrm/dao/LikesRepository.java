@@ -31,12 +31,20 @@ public interface LikesRepository extends JpaRepository<Likes, Long> {
      */
     Likes findByPostUserAndComment(User postUser, Comment comment);
 
+//    /**
+//     * 已/未读的点赞记录
+//     *
+//     * @param userId   当前用户ID
+//     * @param isLooked 是否已读
+//     * @return 点赞记录集合
+//     */
+//    List<Likes> findByReceiveUserIdAndLooked(Long receiveUserId, Boolean isLooked);
+
     /**
-     * 已/未读的点赞记录
+     * 查询用户所有被点赞
      *
-     * @param userId   当前用户ID
-     * @param isLooked 是否已读
-     * @return 点赞记录集合
+     * @param receiveUserId 问题接受者的用户Id
+     * @return 被评论的集合
      */
-    List<Likes> findByReceiveUserIdAndLooked(Long userId, Boolean isLooked);
+    List<Likes> findByReceiveUserId(Long receiveUserId);
 }

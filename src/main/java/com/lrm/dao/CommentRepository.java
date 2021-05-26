@@ -36,12 +36,22 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByQuestionId(Long questionId);
 
 
+//    /**
+//     * 查询用户未读评论
+//     *
+//     * @param userId   用户Id
+//     * @param isLooked 是否已读
+//     * @return 评论集合
+//     */
+//    List<Comment> findByReceiveUserIdAndLooked(Long receiveUserId, Boolean isLooked);
+
+
     /**
-     * 查询用户未读评论
+     * 查询用户所有被评论
      *
-     * @param userId   用户Id
-     * @param isLooked 是否已读
-     * @return 评论集合
+     * @param receiveUserId 问题接受者的用户Id
+     * @return 被评论的集合
      */
-    List<Comment> findByReceiveUserIdAndLooked(Long userId, Boolean isLooked);
+    List<Comment> findByReceiveUserId(Long receiveUserId);
+
 }

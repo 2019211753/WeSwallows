@@ -2236,3 +2236,65 @@ org.springframework.web.HttpRequestMethodNotSupportedException: Request method '
 2021-05-26 23:18:40.814  INFO 12568 --- [Thread-32] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-05-26 23:18:40.815  INFO 12568 --- [Thread-32] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
 2021-05-26 23:18:40.825  INFO 12568 --- [Thread-32] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2021-05-26 23:18:41.663  INFO 12568 --- [restartedMain] com.lrm.Application                      : Starting Application on 山水夜止 with PID 12568 (started by Administrator in D:\springboot开发\雏雁项目\WeSwallows)
+2021-05-26 23:18:41.663 DEBUG 12568 --- [restartedMain] com.lrm.Application                      : Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2021-05-26 23:18:41.663  INFO 12568 --- [restartedMain] com.lrm.Application                      : No active profile set, falling back to default profiles: default
+2021-05-26 23:18:42.001  INFO 12568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-05-26 23:18:42.073  INFO 12568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71ms. Found 6 repository interfaces.
+2021-05-26 23:18:42.177  INFO 12568 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2354bef4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-26 23:18:42.435  INFO 12568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-26 23:18:42.436  INFO 12568 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-26 23:18:42.437  INFO 12568 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.12
+2021-05-26 23:18:42.488  INFO 12568 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-26 23:18:42.488  INFO 12568 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 823 ms
+2021-05-26 23:18:42.524  INFO 12568 --- [restartedMain] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2021-05-26 23:18:42.525  INFO 12568 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2021-05-26 23:18:42.525  INFO 12568 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2021-05-26 23:18:42.525  INFO 12568 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'formContentFilter' to: [/*]
+2021-05-26 23:18:42.525  INFO 12568 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2021-05-26 23:18:42.626  INFO 12568 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2021-05-26 23:18:42.630  INFO 12568 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2021-05-26 23:18:42.649  INFO 12568 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-05-26 23:18:42.674  INFO 12568 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-05-26 23:18:42.963  INFO 12568 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-26 23:18:43.054  INFO 12568 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-26 23:18:43.264  INFO 12568 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2021-05-26 23:18:44.002  INFO 12568 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-26 23:18:44.280  INFO 12568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-26 23:18:44.281  INFO 12568 --- [restartedMain] com.lrm.Application                      : Started Application in 2.663 seconds (JVM running for 327.1)
+2021-05-26 23:18:44.284  INFO 12568 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-05-26 23:19:21.150  INFO 12568 --- [Thread-38] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-26 23:19:21.153  INFO 12568 --- [Thread-38] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-05-26 23:19:21.154  INFO 12568 --- [Thread-38] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2021-05-26 23:19:21.160  INFO 12568 --- [Thread-38] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2021-05-26 23:19:22.173  INFO 12568 --- [restartedMain] com.lrm.Application                      : Starting Application on 山水夜止 with PID 12568 (started by Administrator in D:\springboot开发\雏雁项目\WeSwallows)
+2021-05-26 23:19:22.173 DEBUG 12568 --- [restartedMain] com.lrm.Application                      : Running with Spring Boot v2.1.0.RELEASE, Spring v5.1.2.RELEASE
+2021-05-26 23:19:22.173  INFO 12568 --- [restartedMain] com.lrm.Application                      : No active profile set, falling back to default profiles: default
+2021-05-26 23:19:22.603  INFO 12568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-05-26 23:19:22.650  INFO 12568 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46ms. Found 6 repository interfaces.
+2021-05-26 23:19:22.714  INFO 12568 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$2354bef4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-26 23:19:22.931  INFO 12568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-05-26 23:19:22.932  INFO 12568 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-26 23:19:22.932  INFO 12568 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.12
+2021-05-26 23:19:22.952  INFO 12568 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-26 23:19:22.953  INFO 12568 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 778 ms
+2021-05-26 23:19:22.998  INFO 12568 --- [restartedMain] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2021-05-26 23:19:22.999  INFO 12568 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2021-05-26 23:19:22.999  INFO 12568 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2021-05-26 23:19:22.999  INFO 12568 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'formContentFilter' to: [/*]
+2021-05-26 23:19:22.999  INFO 12568 --- [restartedMain] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2021-05-26 23:19:23.094  INFO 12568 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2021-05-26 23:19:23.098  INFO 12568 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2021-05-26 23:19:23.112  INFO 12568 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2021-05-26 23:19:23.142  INFO 12568 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2021-05-26 23:19:23.366  INFO 12568 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-05-26 23:19:23.435  INFO 12568 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-05-26 23:19:23.716  INFO 12568 --- [restartedMain] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2021-05-26 23:19:24.835  INFO 12568 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-26 23:19:25.183  INFO 12568 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-05-26 23:19:25.184  INFO 12568 --- [restartedMain] com.lrm.Application                      : Started Application in 3.054 seconds (JVM running for 368.002)
+2021-05-26 23:19:25.186  INFO 12568 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged

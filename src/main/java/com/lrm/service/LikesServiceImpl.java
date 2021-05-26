@@ -76,7 +76,7 @@ public class LikesServiceImpl implements LikesService{
 
     @Override
     public List<Likes> listAllNotReadComment(Long userId) {
-        return likesRepository.findByReceiveUserIdAndLooked(userId, false);
+        return likesRepository.findByReceiveUserId(userId);
     }
 
 }
