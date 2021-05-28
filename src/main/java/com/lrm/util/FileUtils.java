@@ -46,6 +46,7 @@ public class FileUtils {
      * @param path     文件存放路径
      * @param fileName 原文件名
      * @return 新文件名/null
+     * @throws IOException 文件大小溢出异常
      */
     public static String upload(MultipartFile file, String path, String fileName) throws IOException {
 
