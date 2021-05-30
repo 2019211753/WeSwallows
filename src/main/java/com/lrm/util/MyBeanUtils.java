@@ -13,7 +13,7 @@ import java.util.List;
 public class MyBeanUtils {
 
     /**
-     * 获取所有的属性值为空的属性名数组 复制时排除这些本来就是null的值
+     * 获取所有的属性值为空的属性名数组 后续使用copyProperties时让source对象中的这部分属性
      *
      * @param source 实体对象
      * @return 空属性

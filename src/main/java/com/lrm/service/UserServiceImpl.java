@@ -94,10 +94,12 @@ public class UserServiceImpl implements UserService
     @Override
     @Transactional
     public User updateUser(User user, Map<String, Object> hashMap) {
+        //user里为null的属性
+        String[] str = MyBeanUtils.getNullPropertyNames(user);
+
         //这个u和user虽然id相同，但是已经不是一个对象了
         User u = getUser(user.getId());
-        //user赋值给u
-        String[] str = MyBeanUtils.getNullPropertyNames(user);
+        //user赋值给u 为null的属性就不赋了
         BeanUtils.copyProperties(user, u, str);
 
         hashMap.put("token", TokenInfo.postToken(u));
