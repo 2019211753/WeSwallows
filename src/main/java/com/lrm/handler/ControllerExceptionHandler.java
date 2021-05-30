@@ -12,14 +12,12 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.util.List;
 
@@ -37,13 +35,13 @@ public class ControllerExceptionHandler {
     /**
      * 负责处理操作失误产生的异常
      *
-     * @param normalException 普通异常类
+     * @param e 普通异常类
      * @return 给前端展示的结果 code为406
      */
     @ExceptionHandler(NormalException.class)
-    public Result NormalExceptionHandler(HttpServletRequest request, NormalException normalException) {
-        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), normalException);
-        return Result.returnNormalException(normalException);
+    public Result NormalExceptionHandler(HttpServletRequest request, NormalException e) {
+        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), e);
+        return Result.returnNormalException(e);
     }
 
     /**
@@ -68,27 +66,39 @@ public class ControllerExceptionHandler {
     /**
      * 负责处理资源找不到异常
      *
-     * @param request           获取请求发送的资源 URL
-     * @param notFoundException 资源不存在异常类
+     * @param request 获取请求发送的资源 URL
+     * @param e       资源不存在异常类
      * @return 给前端展示的结果 code为404
      */
     @ExceptionHandler(NotFoundException.class)
-    public Result NotFoundExceptionHandler(HttpServletRequest request, NotFoundException notFoundException) {
-        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), notFoundException);
-        return Result.returnNotFoundException(notFoundException, request.getRequestURL());
+    public Result NotFoundExceptionHandler(HttpServletRequest request, NotFoundException e) {
+        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), e);
+        return Result.returnNotFoundException(e, request.getRequestURL());
     }
 
     /**
      * 负责处理权限不足异常
      *
-     * @param request               获取请求发送的资源 URL
-     * @param noPermissionException 无权限异常类
+     * @param request 获取请求发送的资源 URL
+     * @param e       无权限异常类
      * @return 给前端展示的结果 code为403
      */
     @ExceptionHandler(NoPermissionException.class)
-    public Result NoPermissionExceptionHandler(HttpServletRequest request, NoPermissionException noPermissionException) {
-        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), noPermissionException);
-        return Result.returnNoPermissionException(noPermissionException, request.getRequestURL());
+    public Result NoPermissionExceptionHandler(HttpServletRequest request, NoPermissionException e) {
+        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), e);
+        return Result.returnNoPermissionException(e, request.getRequestURL());
+    }
+
+    /**
+     * 负责输入输出流异常
+     *
+     * @param request 获取请求发送的资源 URL
+     * @return 给前端展示的结果 code为402
+     */
+    @ExceptionHandler({IOException.class})
+    public Result IOEHandler(HttpServletRequest request, IOException e) {
+        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), e);
+        return Result.returnIOAndMaxSizeException();
     }
 
     /**
@@ -97,22 +107,22 @@ public class ControllerExceptionHandler {
      * @param request 获取请求发送的资源 URL
      * @return 给前端展示的结果 code为402
      */
-    @ExceptionHandler({IOException.class, MaxUploadSizeExceededException.class})
-    public Result IOEHandler(HttpServletRequest request) {
-        logger.error("Request URL: {}, Exception : {}", request.getRequestURL());
-        return Result.returnIOException();
+    @ExceptionHandler({MaxUploadSizeExceededException.class})
+    public Result IOEHandler(HttpServletRequest request, MaxUploadSizeExceededException e) {
+        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), e);
+        return Result.returnIOAndMaxSizeException();
     }
 
     /**
      * 负责处理JWT异常
      *
      * @param request 获取请求发送的资源 URL
-     * @param jwtVerificationException JWT鉴权异常
+     * @param e JWT鉴权异常
      * @return 给前端展示的结果 code为401
      */
     @ExceptionHandler(JWTVerificationException.class)
-    public Result JWTHandler(HttpServletRequest request, JWTVerificationException jwtVerificationException) {
-        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), jwtVerificationException);
+    public Result JWTHandler(HttpServletRequest request, JWTVerificationException e) {
+        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), e);
         return Result.returnJWTException(request.getRequestURL());
     }
 

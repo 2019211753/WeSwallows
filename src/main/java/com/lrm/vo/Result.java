@@ -12,7 +12,7 @@ import java.io.IOException;
 //406定义为操作失误（不是跳转到异常页面，而是直接在当前页给出提示）
 //404定义为没找到对应资源
 //403定义为无权限访问
-//402定义为文件过大
+//402定义为文件过大或输入输出流异常
 //401定义为JWT鉴权失败
 //400定义其他未知错误
 
@@ -78,7 +78,7 @@ public class Result<T> {
         return result;
     }
 
-    public static Result returnIOException() {
+    public static Result returnIOAndMaxSizeException() {
         Result result = new Result();
         result.setData(null);
         result.setMsg("文件超过了1MB");
