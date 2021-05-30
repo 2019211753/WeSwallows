@@ -41,18 +41,21 @@ public class ControllerExceptionHandler {
      * @return 给前端展示的结果 code为406
      */
     @ExceptionHandler(NormalException.class)
-    public Result NormalExceptionHandler(NormalException normalException) {
+    public Result NormalExceptionHandler(HttpServletRequest request, NormalException normalException) {
+        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), normalException);
         return Result.returnNormalException(normalException);
     }
 
     /**
      * 负责处理参数校验产生的异常
      *
-     * @param e 参数校验异常类
+     * @param request 获取请求发送的资源 URL
+     * @param e       参数校验异常类
      * @return 给前端展示的结果 code为406
      */
     @ExceptionHandler(BindException.class)
-    public Result handleParameterNotValidException(BindException e) {
+    public Result handleParameterNotValidException(HttpServletRequest request, BindException e) {
+        logger.error("Request URL: {}, Exception : {}", request.getRequestURL(), e);
         BindingResult result = e.getBindingResult();
         List<FieldError> errors = result.getFieldErrors();
         StringBuilder buffer = new StringBuilder(64);
