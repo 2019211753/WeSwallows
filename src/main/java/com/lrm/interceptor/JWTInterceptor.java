@@ -36,22 +36,18 @@ public class JWTInterceptor extends HandlerInterceptorAdapter
         //异常处理
         } catch (TokenExpiredException e) {
             logger.error("Exception : {}", "拦截器：用户令牌已经过期");
-            map.put("isSuccess", false);
             map.put("msg", "用户令牌已经过期，请重新登陆");
             map.put("code", "401");
         } catch (SignatureVerificationException e){
             logger.error("Exception : {}", "拦截器：签名错误");
-            map.put("isSuccess", false);
             map.put("msg", "签名错误");
             map.put("code", "401");
         } catch (AlgorithmMismatchException e){
             logger.error("Exception : {}", "拦截器：加密算法不匹配");
-            map.put("isSuccess", false);
             map.put("msg", "加密算法不匹配");
             map.put("code", "401");
         } catch (Exception e) {
             logger.error("Exception : {}", "拦截器：无效令牌");
-            map.put("isSuccess", false);
             map.put("msg", "无效令牌");
             map.put("code", "401");
         }

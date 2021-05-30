@@ -33,37 +33,32 @@ public class AuthorityInterceptor extends HandlerInterceptorAdapter {
         try {
             //这里发生异常需要后面来处理
             JWTUtils.verify(token);
-                DecodedJWT decodedJWT = JWTUtils.getToken(token);
-                //在token中取得admin
-                boolean admin = Boolean.parseBoolean(decodedJWT.getClaim("admin").asString());
-                if (!admin) {
-                    logger.error("Exception : {}", "拦截器：用户没有管理员权限");
-                    map.put("isSuccess", false);
-                    map.put("msg", "您没有管理员权限");
-                    map.put("code", "403");
-                } else {
-                    return true;
-                }
+            DecodedJWT decodedJWT = JWTUtils.getToken(token);
+            //在token中取得admin
+            boolean admin = Boolean.parseBoolean(decodedJWT.getClaim("admin").asString());
+            if (!admin) {
+                logger.error("Exception : {}", "拦截器：用户没有管理员权限");
+                map.put("msg", "您没有管理员权限");
+                map.put("code", "403");
+            } else {
+                return true;
+            }
                 //异常处理
             } catch (TokenExpiredException e) {
             logger.error("Exception : {}", "拦截器：用户令牌已经过期");
-            map.put("isSuccess", false);
-                map.put("msg", "用户令牌已经过期，请重新登陆");
+            map.put("msg", "用户令牌已经过期，请重新登陆");
                 map.put("code", "401");
             } catch (SignatureVerificationException e){
             logger.error("Exception : {}", "拦截器：签名错误");
-            map.put("isSuccess", false);
-                map.put("msg", "签名错误");
+            map.put("msg", "签名错误");
                 map.put("code", "401");
             } catch (AlgorithmMismatchException e){
             logger.error("Exception : {}", "拦截器：加密算法不匹配");
-            map.put("isSuccess", false);
-                map.put("msg", "加密算法不匹配");
+            map.put("msg", "加密算法不匹配");
                 map.put("code", "401");
             } catch (Exception e) {
             logger.error("Exception : {}", "拦截器：无效令牌");
-            map.put("isSuccess", false);
-                map.put("msg", "无效令牌");
+            map.put("msg", "无效令牌");
                 map.put("code", "401");
             }
             //转化为json返回前端
