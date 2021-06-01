@@ -10,25 +10,41 @@
 
 ### 眼下与展望
 
-目前完成的内容包括一个论坛基本的操作—————
+我们将把服务分为以下几个板块：
 
-比如登录、注册、用户发布问题、评论问题、点赞、点踩、用户排行榜、个人资料修改、管理员功能等等。
+#### StudyBy
 
-在学习交流板块，未来我们希望完成的是————
+在学习交流板块，我们已经对用户存在的需求基本满足。包括发布问题、评论、点赞、点踩、贡献值排行榜等等。未来会根据用户需求进一步扩展。
 
-个性推荐功能，利用复杂网络链路预测来推荐可能用户感兴趣的、和与某个问题相关的问题。
+#### ShareWith
 
-引进社交功能，提供基于该网站，不依托于QQ微信的私信功能,保证相对较好的匿名性。方便互相进一步探讨问题。
+在信息分享板块，未来我们希望完成的是————
 
-个人博客功能——不止发布问题，还可以分享。
+百科功能，人人可以编辑，但需要管理员审核，类似于百度百科，比如某某竞赛的具体信息。
 
-百科功能，人人可以编辑，但需要管理员审核，类似于百度百科，适用于受众人群广，时变性强的消息，比如某某竞赛。
+问卷广场功能，自己设计或使用现有问卷系统的API，开辟“问卷广场”。设置奖励机制，一定程度上解决很多人不愿意填问卷，问卷的数据不足的情况。
 
-问卷广场功能，自己设计或使用问卷星的API，开辟“问卷广场”。设置奖励机制，一定程度上解决很多人不愿意填问卷，问卷的数据不足的情况。
+个人博客功能——不止发布问题，还可以分享知识。
 
-未来我们将会引入生活区，功能大致包括————
+#### TeamUp
 
-支持用户上传图片和菜名，引入学生用户打分功能。得到食堂各个窗口，各个菜品的综合评分。同时对比相品菜式的其他学校\校外店铺的价格，有利于学生利益。和食堂方面发生交互，有助于食堂管理。这类功能因为支持用户自己上传，可以考虑人工审核或Java文字识别。
+在组队区板块，未来我们希望完成的是————
+
+队友匹配功能，基于用户个人标签、站内贡献值等等特征匹配出推荐组队人选，并通过站内私信互相进一步沟通了解。
+
+#### LiveIn
+
+在生活区板块，未来我们希望完成的是————
+
+支持用户上传图片和菜名，引入学生用户打分功能。得到食堂各个窗口，各个菜品的综合评分。同时对比相品菜式的其他学校\校外店铺的价格，有利于学生利益。和食堂方面对接，有助于食堂管理。这类功能因为支持用户自己上传，可以考虑人工审核或文字识别。
+
+#### 拓展
+
+基于以上功能，我们还会提供以下服务，满足用户的潜在需求————
+
+个性推荐功能，利用复杂网络链路预测来推荐可能用户感兴趣的、和与某个问题、博客、问卷、百科词条等等相关的内容。
+
+引进社交功能，提供基于该网站，不依托于QQ微信的私信功能，方便互相进一步探讨问题。以及关注功能等等。
 
 ### 总体设计
 
@@ -42,179 +58,7 @@
 |  语言 | JDK1.8、HTML、css、js
 | 富文本编辑器 | wangEditor.md
 | 数据库  | Mysql5.6
-| 项目框架  | Spingboot2.x
+| 项目框架  | springboot2.x
 | ORM  | JPA
 | 安全框架  | JWT
 | 运行环境  | 腾讯云Centos7
-
-## API
-
-### 使用前
-
-#### 注册
-
-POST http://localhost:8080/register
-
-#### 登录
-
-POST http://localhost:8080/login
-
-### 首页
-
-#### 所有问题和推荐问题
-
-GET http://localhost:8080/
-
-#### 查询问题
-
-POST http://localhost:8080/searchQuestions
-
-#### 点赞问题
-
-GET http://localhost:8080/question/{questionId}/approve
-
-#### 点踩问题
-
-GET http://localhost:8080/question/{questionId}/disapprove
-
-### 标签页
-
-#### 第一级标签
-
-GET http://localhost:8080/tags
-
-#### 按标签搜索
-
-POST http://localhost:8080/tags/searchQuestions
-
-### 排行榜
-
-#### 获取用户榜单
-
-GET http://localhost:8080/rank
-
-### 问题页
-
-#### 问题内容
-
-GET http://localhost:8080/question/{questionId}
-
-#### 获取评论
-
-GET http://localhost:8080/question/{questionId}/comments
-
-#### 发布评论
-
-POST http://localhost:8080/question/{questionId}/comment
-
-#### 评论及问题插入图片
-
-POST http://localhost:8080/question/{questionId}/uploadPhotos
-
-#### 点赞评论
-
-GET http://localhost:8080/question/{questionId}/comment/{commentId}/approve
-
-#### 点踩评论
-
-GET http://localhost:8080/question/{questionId}/comment/{commentId}/disapprove
-
-#### 删除评论
-
-GET http://localhost:8080/question/{questionId}/comment/{commentId}/delete
-
-### 个人主页
-
-#### 问题部分
-
-##### 个人发布的问题
-
-GET http://localhost:8080/customer/questions
-
-##### 新增问题
-
-POST http://localhost:8080/customer/questions
-
-##### 查询问题
-
-POST http://localhost:8080/customer/questions/search
-
-##### 删除问题
-
-GET http://localhost:8080/customer/question/{questionId}/delete
-
-##### 问题归档
-
-GET http://localhost:8080/customer/archives
-
-#### 个人信息
-
-##### 问题归档
-
-GET http://localhost:8080/customer/archives
-
-##### 个人信息
-
-GET http://localhost:8080/customer/personal
-
-##### 个人资料修改
-
-POST http://localhost:8080/customer/modifyAll
-
-##### 头像修改
-
-POST http://localhost:8080/customer/uploadAvatar
-
-#### 个人消息
-
-##### 评论和点赞
-
-GET http://localhost:8080/customer/messages
-
-##### 已读某评论
-
-GET http://localhost:8080/customer/messages/comment/{commentId}/read
-
-##### 已读某点赞
-
-GET http://localhost:8080/customer/messages/likes/{likesId}/read
-
-##### 已读所有评论
-
-GET http://localhost:8080/customer/messages/readAllComments
-
-##### 已读所有点赞
-
-GET http://localhost:8080/customer/messages/readAllLikes
-
-### 管理员页
-
-#### 搜索用户
-
-POST http://localhost:8080/admin/searchUser
-
-#### 禁言
-
-GET http://localhost:8080/admin/controlSpeak/{userId}
-
-#### 新增标签
-
-POST http://localhost:8080/admin/tags/input
-
-#### 删除标签
-
-GET http://localhost:8080/admin/tags/{tagId}/delete
-
-#### 编辑并发布问题
-
-GET http://localhost:8080/admin/question/{questionId}/edit
-
-POST http://localhost:8080/admin/question
-
-#### 删除问题
-
-GET http://localhost:8080/admin/question/{questionId}/delete
-
-#### 搜索问题
-
-POST http://localhost:8080/admin/searchQuestions
